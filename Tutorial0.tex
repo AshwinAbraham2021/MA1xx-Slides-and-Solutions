@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage[inline]{enumitem}
+\usepackage{cancel}
+\usepackage{soul}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+\usepackage{centernot}
+
+\newtheorem{theorem}{Theorem}
+\setlength\parindent{0pt}
+\let\emptyset\varnothing
+\newcommand{\rank}{\operatorname{rank}}
+%\renewcommand{\span}{\operatorname{span}}
+
+% \usepackage{xcolor}
+% \definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
+
+% \usepackage{pagecolor}
+% \pagecolor{mybgcolor}
+% \color{white}
+
+\usepackage{titlesec}
+\titleformat{\section}[block]
+  {\normalfont\scshape}{\S\thesection}{0.25cm}{\large}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\title{MA 109: Calculus I\\Tutorial 0}				% change
+\author{Ashwin Abraham}%\\
+%\small TA for D1-T5}
+\date{7th February 2022}		% change
+
+\begin{document}
+\maketitle
+
+% \hrulefill
+
+% \begin{center}
+% 	\textsc{Disclaimer}
+% \end{center}
+% These are \textbf{not} complete solutions and should not be regarded as such. The purpose of this is to basically get you started and you must fill in the gaps. To be more explicit, if what you care about is marks, then just the solutions written here won't suffice.
+
+% \hrulefill
+
+\begin{enumerate} 
+	\item Clearly \textbf{false} by definition, as $\infty$ and $-\infty$ are not real numbers.
+	\item $\forall x \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimidean Property}.
+    \\Now, $\forall n \in \mathbb{N}, 2n > n \implies 2n > x$.
+    Therefore, $\forall x \in \mathbb{R}, \exists n \in \{2k : k \in \mathbb{N}\}$ such that $n > x$. \\Therefore, the statement is \textbf{false}.
+	\item Note that $\forall y \in \mathbb{R}, y \in \{x\} \implies y = x$.
+	Hence, $\forall a, b,c \in \mathbb{R}, a \in \{x\}, b \in \{x\}, a \leq c \leq b \implies c \in \{x\}$ (because $a = b = c = x$).
+	Therefore, $\{x\}$ is an interval.
+	\\However, $\{x\}$ is not an open set. A set $S \subseteq \mathbb{R}$ is open if and only if $\forall x \in S, \exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subseteq S$.
+	But $(t - \epsilon, t + \epsilon) \subseteq \{x\} \implies \epsilon = 0$ (and also $t = x$), which means $\{x\}$ is not open.
+	\\Therefore, the statement is \textbf{false}.
+	\item $\forall m \in \mathbb{N}, \frac{2}{m} \leq 2$. Therefore $\{\frac{2}{m}: m \in \mathbb{N}\}$ is bounded above by $2$. Therefore, the statement is \textbf{true}.
+	\item $\forall m \in \mathbb{N}, \frac{2}{m} > 0$. Therefore $\{\frac{2}{m}: m \in \mathbb{N}\}$ is bounded below by $0$. Therefore, the statement is \textbf{true}.
+	\item A set $S \subseteq \mathbb{R}$ is an interval if and only if $\forall a, b, c \in \mathbb{R}: a \in S, c \in S, a \leq b \leq c \implies b \in S$.
+	\\Now, consider the intervals $(1, 2)$ and $(3, 4)$. Their union is clearly not an interval (taking $a = 1.5, b = 2.5, c = 3.5$ in the definition shows that it isn't satisfied). Therefore, the statement is \textbf{false}.
+	% \item Let $S_{1}$ and $S_{2}$ be two intervals and let $S = S_{1} \cap S_{2}$. Now, $\forall a, c \in \mathbb{R}, a \in S, c \in S \implies a \in S_{1}, a \in S_{2}, c \in S_{1}, c \in S_{2}$.
+	% If we show that $\forall b \in \mathbb{R}, a \leq b \leq c \implies b \in S$, then we have shown that $S$ is an interval. Now, $a \leq b \leq c \implies b \in S_{1}$ (because $a \in S_{1}$ and $c \in S_{1}$ and $S_{1}$ is an interval) and $b \in S_{2}$ (because $a \in S_{2}$ and $c \in S_{2}$ and $S_{2}$ is an interval).
+	% Therefore, $b \in S_{1} \cap S_{2} = S$. Therefore, $S$ is also an interval (Note that this is true irrespective of whether $S$ is empty or not: This is because the null set is also an interval). Therefore, the statement is \textbf{true}.
+	\item Let $X$\footnote[1]{see the next question to know why we can't prove this by taking two intervals and proving that their intersection is an interval} be a family\footnote[2]{a family is usually used to denote a set whose elements are also sets} of intervals. Let $A$ be the intersection of all the sets in $X$, i.e.,
+	\begin{equation*}
+		A = \bigcap_{S \in X} S
+	\end{equation*}
+	Now, $\forall a \in \mathbb{R}: a \in A \implies \forall S \in X, a \in S$. To show that $A$ is an interval, we must show that $\forall a, b, c \in \mathbb{R}: a, c \in A, a \leq b \leq c \implies b \in A$.
+	If $a, c \in A$, then $\forall S \in X, a, c \in S$. Since every $S$, is an interval, $a, c \in S, a \leq b \leq c \implies b \in S$. Therefore, $\forall S \in X, b \in S$.
+	Hence, $b \in \bigcap_{S \in X} S = A$. Therefore, $A$ is an interval, and the statement is \textbf{true} (Note that it is true irrespective of whether the intersection is empty or not: this is because the empty set is also an interval).
+	\item This statement is actually \textbf{false}, as counterintuitive as it may seem!\\
+	Consider the family of open intervals $S = \{(-\frac{1}{n}, \frac{1}{n}) : n \in \mathbb{N}\}$. This is a set containing an \textbf{infinite} number of open intervals.
+	Consider the intersection of all the sets in this family, i.e. we want to find
+	\begin{equation*}
+		S' = \bigcap_{s \in S} s = \bigcap_{n = 1}^{\infty} (-\frac{1}{n}, \frac{1}{n})
+	\end{equation*}
+	Now, for every $x \in \mathbb{R}, x \neq 0, \exists n \in \mathbb{N}$ such that $\frac{1}{n} < |x|$, i.e., $\exists n \in \mathbb{N}$ such that $x \notin (-\frac{1}{n}, \frac{1}{n})$.
+	\\Therefore, if $x \neq 0$, then $x \notin S'$.
+	However, $\forall n \in \mathbb{N}, 0 \in (-\frac{1}{n}, \frac{1}{n})$. Hence, $0 \in S'$.
+	\\Therefore, $S' = \{0\}$ (which is non-empty). As discussed in question $(3)$, $\{x\}$ is not an open set for any $x \in \mathbb{R}$. Therefore the intersection of the above family of open intervals ($S$) is \textbf{not} an open interval.
+	\\\\Now, if we modify the question to ask about the intersection of a \textbf{finite} number of open intervals, then it turns out that the statement becomes true (whether this intersection is empty or not).
+	\\In this case, it is sufficient to prove that the intersection of two open intervals is also an open interval. We can then use induction to prove the corresponding result for any finite number of open intervals
+	(if the intersection of $k \geq 2$ open intervals is an open interval, then the intersection of $k+1$ open intervals is nothing but the intersection of the intersection of the first $k$ open intervals (which is itself an open interval) with the last open interval. Therefore, it is the intersection of two open intervals and is hence an open interval).
+	\\\\The proof for two open intervals is as follows:
+	\\Let $S_{1}$ and $S_{2}$ be two open intervals. From question $(7)$, we already know that their intersection will be an interval. Therefore, we just have to show that their intersection is open.
+	Now, a set $S$ is open if and only if $\forall x \in S, \exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subseteq S$. Let $x \in S_{1} \cap S_{2}$. This means $x \in S_{1}$ and $x \in S_{2}$, which means
+	$\exists \epsilon_{1} > 0$ such that $(x - \epsilon_{1}, x + \epsilon_{1}) \subseteq S_{1}$ and $\exists \epsilon_{2} > 0$ such that $(x - \epsilon_{2}, x + \epsilon_{2}) \subseteq S_{2}$. Since $\epsilon_{1}, \epsilon_{2} > 0$, we can choose some $0 < \epsilon < \min(\epsilon_{1}, \epsilon_{2})$.
+	Now, $(x - \epsilon, x + \epsilon) \subseteq (x - \epsilon_{1}, x + \epsilon_{1}) \subseteq S_{1}$ and $(x - \epsilon, x + \epsilon) \subseteq (x - \epsilon_{2}, x + \epsilon_{2}) \subseteq S_{2}$. Therefore, $(x - \epsilon, x + \epsilon) \subseteq S_{1} \cap S_{2}$.
+	Therefore, $S_{1} \cap S_{2}$ is an open set, and hence (since $S_{1}$ and $S_{2}$ are also intervals) an open interval.
+	\item We know that the intersection of intervals is always an interval. Hence, we just need to show that the intersection of closed sets is always closed.
+	\\ A set $S \subseteq \mathbb{R}$ is closed if and only if its complement ($S^{C} = \mathbb{R} - S$) is open\footnote[3]{later you may learn a different, more general definition of a closed set which you can prove to be equivalent to this definition}. 
+	Before, proving that the intersection of a family of closed sets is closed, we will first show that the union of a family of open sets is open.
+	\\Let $X$ be a family of open sets, and let $A$ be the union of all the sets in $X$, i.e.
+	\begin{equation*}
+		A = \bigcup_{S \in X} S
+	\end{equation*}
+	Now, $\forall x \in \mathbb{R}: x \in A \implies \exists S \in A, x \in S$. Since $S$ is open, $\exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subseteq S \implies (x - \epsilon, x + \epsilon) \subseteq A$.
+	Therefore, $A$ is also open.
+	Now, we shall prove that the intersection of closed sets is always closed. Let $Y$ be a family of closed sets, and let $B$ be the intersection of all the sets in $Y$, i.e.
+	\begin{equation*}
+		B = \bigcap_{S \in Y} S
+	\end{equation*}
+	Now,
+	\begin{equation*}
+		B^{C} = \bigcup_{S \in Y} S^{C}
+	\end{equation*}
+	Since each $S$ is a closed set, each $S^{C}$ is an open set. Since the union of a family of open sets is open, $B^{C}$ must be an open set, which means $B$ is a closed set.
+	Therefore, the intersection of a family of closed sets is always closed, which makes the statement \textbf{true} (note that again it is irrelevant whether this intersection is empty or not).
+	\item This statement is \textbf{true} (it trivially follows from question $(9)$, in the special case where the family of closed intervals is finite).
+	\item $\forall x \in \mathbb{R}, \exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimidean Property}. Since $\mathbb{N} \subseteq \mathbb{Q}$, this means
+	that $\forall x \in \mathbb{R}, \exists n \in \mathbb{Q}$ such that $n > x$. Therefore, the statement is \textbf{true}.
+	\item This statement is \textbf{false}\footnote[4]{the answer given in the booklet is incorrect}. When we take two equal rationals ($a, b \in \mathbb{Q}$ with $a = b$), then\\ $\forall c \in \mathbb{R}: a \leq c \leq b \implies c = a = b \implies c \in \mathbb{Q}$. Therefore, there will be no irrationals between $a$ and $b$.
+	\\If we modify the question to be about distinct rationals, then the statement becomes true. If $a$ and $b$ are distinct rationals, then $\frac{\sqrt{2}a + b}{\sqrt{2}+1}$ is an irrational\footnote[5]{if this number were rational, $\sqrt{2}$ would be rational, which we know \href{https://proofwiki.org/wiki/Square_Root_of_2_is_Irrational}{not to be the case}} between $a$ and $b$.
+\end{enumerate}
+\end{document}
