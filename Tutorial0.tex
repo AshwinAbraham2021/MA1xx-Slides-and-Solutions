@@ -56,8 +56,8 @@
 
 \begin{enumerate} 
 	\item Clearly \textbf{false} by definition, as $\infty$ and $-\infty$ are not real numbers.
-	\item $\forall x \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimidean Property}.
-    \\Now, $\forall n \in \mathbb{N}, 2n > n \implies 2n > x$.
+	\item $\forall x \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimedean Property}.
+    \\Now, $\forall n \in \mathbb{N}, 2n > n$. Hence, $n > x \implies 2n > x$.
     Therefore, $\forall x \in \mathbb{R}, \exists n \in \{2k : k \in \mathbb{N}\}$ such that $n > x$. \\Therefore, the statement is \textbf{false}.
 	\item Note that $\forall y \in \mathbb{R}, y \in \{x\} \implies y = x$.
 	Hence, $\forall a, b,c \in \mathbb{R}, a \in \{x\}, b \in \{x\}, a \leq c \leq b \implies c \in \{x\}$ (because $a = b = c = x$).
@@ -118,7 +118,7 @@
 	Since each $S$ is a closed set, each $S^{C}$ is an open set. Since the union of a family of open sets is open, $B^{C}$ must be an open set, which means $B$ is a closed set.
 	Therefore, the intersection of a family of closed sets is always closed, which makes the statement \textbf{true} (note that again it is irrelevant whether this intersection is empty or not).
 	\item This statement is \textbf{true} (it trivially follows from question $(9)$, in the special case where the family of closed intervals is finite).
-	\item $\forall x \in \mathbb{R}, \exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimidean Property}. Since $\mathbb{N} \subseteq \mathbb{Q}$, this means
+	\item $\forall x \in \mathbb{R}, \exists n \in \mathbb{N}$ such that $n > x$, by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimedean Property}. Since $\mathbb{N} \subseteq \mathbb{Q}$, this means
 	that $\forall x \in \mathbb{R}, \exists n \in \mathbb{Q}$ such that $n > x$. Therefore, the statement is \textbf{true}.
 	\item This statement is \textbf{false}\footnote[4]{the answer given in the booklet is incorrect}. When we take two equal rationals ($a, b \in \mathbb{Q}$ with $a = b$), then\\ $\forall c \in \mathbb{R}: a \leq c \leq b \implies c = a = b \implies c \in \mathbb{Q}$. Therefore, there will be no irrationals between $a$ and $b$.
 	\\If we modify the question to be about distinct rationals, then the statement becomes true. If $a$ and $b$ are distinct rationals, then $\frac{\sqrt{2}a + b}{\sqrt{2}+1}$ is an irrational\footnote[5]{if this number were rational, $\sqrt{2}$ would be rational, which we know \href{https://proofwiki.org/wiki/Square_Root_of_2_is_Irrational}{not to be the case}} between $a$ and $b$.
