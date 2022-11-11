@@ -80,14 +80,14 @@
 	If $a, c \in A$, then $\forall S \in X, a, c \in S$. Since every $S$, is an interval, $a, c \in S, a \leq b \leq c \implies b \in S$. Therefore, $\forall S \in X, b \in S$.
 	Hence, $b \in \bigcap_{S \in X} S = A$. Therefore, $A$ is an interval, and the statement is \textbf{true} (Note that it is true irrespective of whether the intersection is empty or not: this is because the empty set is also an interval).
 	\item This statement is actually \textbf{false}, as counterintuitive as it may seem!\\
-	Consider the family of open intervals $S = \{(-\frac{1}{n}, \frac{1}{n}) : n \in \mathbb{N}\}$. This is a set containing an \textbf{infinite} number of open intervals.
+	Consider the family of open intervals $S = \{\left( -\frac{1}{n}, \frac{1}{n} \right) : n \in \mathbb{N}\}$. This is a set containing an \textbf{infinite} number of open intervals.
 	Consider the intersection of all the sets in this family, i.e. we want to find
 	\begin{equation*}
-		S' = \bigcap_{s \in S} s = \bigcap_{n = 1}^{\infty} (-\frac{1}{n}, \frac{1}{n})
+		S' = \bigcap_{s \in S} s = \bigcap_{n \in \mathbb{N}} \left(-\frac{1}{n}, \frac{1}{n}\right)
 	\end{equation*}
-	Now, for every $x \in \mathbb{R}, x \neq 0, \exists n \in \mathbb{N}$ such that $\frac{1}{n} < |x|$, i.e., $\exists n \in \mathbb{N}$ such that $x \notin (-\frac{1}{n}, \frac{1}{n})$.
-	\\Therefore, if $x \neq 0$, then $x \notin S'$.
-	However, $\forall n \in \mathbb{N}, 0 \in (-\frac{1}{n}, \frac{1}{n})$. Hence, $0 \in S'$.
+	Now, for every $x \in \mathbb{R}, x \neq 0, \exists n \in \mathbb{N}$ such that $\frac{1}{n} < |x|$ (again by the \href{https://en.wikipedia.org/wiki/Archimedean_property}{Archimedean Property}), i.e., $\exists n \in \mathbb{N}$ such that $x \notin \left(-\frac{1}{n}, \frac{1}{n}\right)$.
+	Therefore, if $x \neq 0$, then $x \notin S'$.
+	However, $\forall n \in \mathbb{N}, 0 \in \left(-\frac{1}{n}, \frac{1}{n}\right)$. Hence, $0 \in S'$.
 	\\Therefore, $S' = \{0\}$ (which is non-empty). As discussed in question $(3)$, $\{x\}$ is not an open set for any $x \in \mathbb{R}$. Therefore the intersection of the above family of open intervals ($S$) is \textbf{not} an open interval.
 	\\\\Now, if we modify the question to ask about the intersection of a \textbf{finite} number of open intervals, then it turns out that the statement becomes true (whether this intersection is empty or not).
 	\\In this case, it is sufficient to prove that the intersection of two open intervals is also an open interval. We can then use induction to prove the corresponding result for any finite number of open intervals
