@@ -49,7 +49,8 @@
                                  Now, whenever $0 < |x-c| < \delta_0$, 
                                  $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times M < \frac{\epsilon_0}{M} \times M = \epsilon_0$$
                                  
-                                 Hence, the limit of $\lim_{x\to c}f(x)g(x)$ exists and is equal to $0$.
+                                 Hence, the limit of $\lim_{x\to c}f(x)g(x)$ exists and is equal to $0$.\footnote{This remains true if instead ofbeing bounded in the entire domain, g is given to be bounded in a finite punctured neighborhood of $c$, which serves as a nice motivation for the next subpart} 
+ 
                          \item Let $\lim_{x \to c} g(x)$ be L. We have that 
 
                                  $$\exists \delta_0 > 0 \text{ such that } |g(x) - L| < |L|\text{ when } 0 < |x-c| < \delta_0$$
@@ -62,23 +63,24 @@
                                  $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times 2|L| < \frac{\epsilon}{2|L|} \times 2|L| = \epsilon$$
 
                                  Hence,
-                         $$\forall \epsilon \exists \delta_2  \text{ such that } |f(x)g(x) - 0| < \epsilon  \text{ when } 0 < |x-c| < \delta$$
+                         $$\forall \epsilon>0 \exists \delta_2>0  \text{ such that } |f(x)g(x) - 0| < \epsilon  \text{ when } 0 < |x-c| < \delta$$
+                         which means that the limit exists and is equal to $0$, as we wanted to prove.
                 \end{enumerate}
         \item Let $\lim_{x\to \alpha}f(x) = L$
                 $$|f(\alpha+h) - f(\alpha-h) - 0| = |f(\alpha+h) - L - (f(\alpha-h) - L)| < |f(\alpha+h)-L| + |f(\alpha-h) - L|$$
 
                 Since $\lim_{x\to \alpha}f(x) = L$
-                $\forall \epsilon, \exists \delta  \text{ such that } |f(x) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |x-\alpha| < \delta $
+                $\forall \epsilon>0, \exists \delta>0  \text{ such that } |f(x) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |x-\alpha| < \delta $
                 Rewriting $h = x-\alpha$, we get
-                $\forall \epsilon, \exists \delta_0  \text{ such that } |f(\alpha + h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_0 $
+                $\forall \epsilon>0, \exists \delta_0>0  \text{ such that } |f(\alpha + h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_0 $
                 Again rewriting with $h = \alpha-x$, we get 
                 $$
-                \forall \epsilon, \exists \delta_1  \text{ such that } |f(\alpha - h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_1
+                \forall \epsilon>0, \exists \delta_1>0  \text{ such that } |f(\alpha - h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_1
                 $$
                 From these two statements, we get that
-                $$\forall \epsilon, \exists \delta  \text{ such that } |f(\alpha-h) - L| + |f(\alpha - h) - L| < \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)$$
+                $$\forall \epsilon>0, \exists \delta>0  \text{ such that } |f(\alpha-h) - L| + |f(\alpha - h) - L| < \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)$$
                 $$
-                \implies \forall \epsilon, \exists \delta  \text{ such that } |f(\alpha-h) - f(\alpha - h)|< \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)
+                \implies \forall \epsilon>0, \exists \delta>0  \text{ such that } |f(\alpha-h) - f(\alpha - h)|< \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)
                 $$
 
                 One could have also argued the same using algebra of limits on functions.
@@ -126,8 +128,8 @@
         Set $x=y=0$ to get $f(0) = 2f(0) \implies f(0) = 0$
 $$f(c+h) = f(c) + f(h) \implies f(c+h)-f(c) = f(h) = f(h)-f(0)$$
     Since $f$ is continuous at $0$
-    $$ \forall \epsilon \exists \delta  \text{ such that }|f(h)-0| < \epsilon  \text{ when } 0 < h < \delta$$
-    $$\implies \forall \epsilon \exists \delta  \text{ such that } |f(c+h) - f(c)| = |f(h)| < \epsilon\text{ when } 0 < h < \delta$$
+    $$ \forall \epsilon>0 \exists \delta>0  \text{ such that }|f(h)-0| < \epsilon  \text{ when } 0 < h < \delta$$
+    $$\implies \forall \epsilon>0 \exists \delta>0  \text{ such that } |f(c+h) - f(c)| = |f(h)| < \epsilon\text{ when } 0 < h < \delta$$
     \begin{center}$\implies$ f is continous for all $c \in \mathbf{R}$    
 
     \end{center}
