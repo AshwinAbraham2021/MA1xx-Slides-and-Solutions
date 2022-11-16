@@ -11,7 +11,13 @@
     pdfpagemode=FullScreen,
     }
 \urlstyle{same}
-
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
 \title{Tutorial 2 Solutions}
 \author{Arhaan Ahmad}
 \date{November 2022}
@@ -49,12 +55,14 @@
                                  $$\exists \delta_0 > 0 \text{ such that } |g(x) - L| < |L|\text{ when } 0 < |x-c| < \delta_0$$
                                  $$\implies |g(x)| - |L| < |L| \implies |g(x)| < 2|L| \text{ when } 0 < |x-c| < \delta_0$$
 
-                                 For a particular epsilon $\epsilon_1$, let $\delta_1$, be the delta that is such that 
-                                 $|f(x) - 0 | < \frac{\epsilon_1}{2|L|} \text{ when } 0 < |x-c| < \delta_1$
+                                 For a particular epsilon $\epsilon$, let $\delta_1$, be the delta that is such that 
+                                 $|f(x) - 0 | < \frac{\epsilon}{2|L|} \text{ when } 0 < |x-c| < \delta_1$
 
-                         Now, $\delta_3 = \min(\delta_0, \delta_1)$ is such that  whenever $0 < |x-c| < \delta_3$, 
-                                 $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times 2|L| < \frac{\epsilon_1}{2|L|} \times 2|L| = \epsilon_1$$
+                         Now, $\delta_2 = \min(\delta_0, \delta_1)$ is such that  whenever $0 < |x-c| < \delta_2$, 
+                                 $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times 2|L| < \frac{\epsilon}{2|L|} \times 2|L| = \epsilon$$
 
+                                 Hence,
+                         $$\forall \epsilon \exists \delta_2  \text{ such that } |f(x)g(x) - 0| < \epsilon  \text{ when } 0 < |x-c| < \delta$$
                 \end{enumerate}
         \item Let $\lim_{x\to \alpha}f(x) = L$
                 $$|f(\alpha+h) - f(\alpha-h) - 0| = |f(\alpha+h) - L - (f(\alpha-h) - L)| < |f(\alpha+h)-L| + |f(\alpha-h) - L|$$
