@@ -1,7 +1,17 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
-\usepackage{xcolor}
+\usepackage{xcolor}\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
 \title{Tutorial 2 Solutions}
 \author{Arhaan Ahmad}
 \date{November 2022}
@@ -113,6 +123,57 @@ $$f(c+h) = f(c) + f(h) \implies f(c+h)-f(c) = f(h) = f(h)-f(0)$$
     \begin{center}$\implies$ f is continous for all $c \in \mathbf{R}$    
 
     \end{center}
-\item 
+    For more information about this see \href{https://en.wikipedia.org/wiki/Cauchy\%27s_functional_equation}{this wikipedia entry}
+
+\item For $x \neq 0$, $\frac{1}{x}$ is differentiable while $\sin x$ and $x$ are differentiable at all points. Hence, a function formed by their compositions and products would also be differentiable at $x \neq 0$. At $x = 0$, we'll need to work by first principles.
+        We need to see if $\lim_{x\to 0} \frac{f(x)-f(0)}{x} = \lim_{x\to 0} \frac{f(x)}{x} = \lim_{x\to 0} x\sin \frac{1}{x}$ exists. Deja vu to q3 ii), the limit exists and is equal to 0. Hence f is differentiable on $\mathbf{R}$
+        However, the derivative is not continuous. Using chain rule for $x\neq 0$, we get that 
+        $$f'(x) = \begin{cases}
+                    2x \sin \frac{1}{x}+ \cos \frac{1}{x} &  \text{ when } x \neq 0\\
+                    0 &  \text{ when } x = 0\\
+                \end{cases}
+                $$
+                We can show that $\lim_{x\to 0} f'(x)$ does not exist, using a method similar to q3 i)
+
+        \item We have that $\forall x,x+h \in (a,b)$
+                $$\frac{|f(x+h) - f(x)|}{|h|} < C |h|^{\alpha-1}$$
+
+                $$\implies -C|h|^{\alpha-1} < \frac{f(x+h) - f(x)}{h} < C |h|^{\alpha-1}$$
+
+                Since $\alpha -1 > 0$, $\lim_{h \to 0} C|h|^{\alpha-1} = \lim_{h \to 0} -C|h|^{\alpha-1} = 0$
+
+                Hence, by sandwich theorem we can conclude that $\lim_{h\to 0}\frac{f(x+h) - f(x)}{h}$ exists and equals $0$. By definition, this means that f is differentiable over $(a, b)$ and $f'(x) = 0 \, \forall x \in (a,b)$
+
+        \item
+
+                \begin{align*}\lim_{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} &= \lim_{h\to 0^+}\frac{\frac{f(c+h)-f(c)}{h} + \frac{f(c) - f(c-h)}{h}}{2}\\ 
+                                                                       &= \frac{\lim_{h\to 0^+}\frac{f(c+h)-f(c)}{h} + \lim_{h\to 0^+}\frac{f(c) - f(c-h)}{h}}{2}\\
+                \end{align*}
+               
+                Since f is differentiable, $\lim_{h\to 0^+}\frac{f(c+h)-f(c)}{h} = $ Right hand derivative $ = $ Left hand derivative $ = \lim_{h\to 0^+}\frac{f(c) - f(c-h)}{h} = f'(c)$
+
+                Hence, we are done.
+
+                The converse is false, consider $f(x) = |x|$ and $c = 0$. Then $\lim_{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} = \lim_{h\to 0^+}\frac{h - h}{2} = 0$, but the function is not differentiable at 0.
+        \item First, note that if $\exists c  \text{ such that } f(c) = 0$, then $f(x) = f(x-c+c) =f(x-c)f(c) = 0\, \forall x \in \mathbf{R}$. In this case f is obviously differentiable, with $f'(c) = 0 \forall c = f'(0)f(c)$ (trivially).
+
+                The only other possibility is that f is always non-zero. Set $x=y=0$ to get
+                $$f(0) = f(0)^2 \implies f(0) = 0 \text{ or } 1$$.
+                If $f$ is not identically $0$ then $f(0) = 1$.
+
+                $$\frac{f(c+h)-f(c)}{h} = \frac{f(c)f(h) - f(c)}{h} = f(c)\times \frac{f(h) - 1}{h}$$
+
+                Since $f'(0) = \lim_{h\to 0}\frac{f(h) - 1}{h}$ exists, we have that $\lim_{h\to 0}\frac{f(c+h)-f(c)}{h} =  \lim_{h\to 0} f(c)\times \frac{f(h) - 1}{h}$ exists and is equal to $f(c)\times \lim_{h\to 0}\frac{f(h)-f(0)}{h} = f(c)f'(0)$. Thus, by definition, $f$ is differentiable at every $c\in \mathbf{R}$ and $f'(c) = f(c) f'(0)$
+
+        \item Calculating derivative of inverse of a function. Let $f: (a, b) \to \mathbf{R}$ be a differentiable and invertible function. Let the inverse be denoted by $g(x)$
+
+                $f(g(x)) = x$
+
+                Differentating $f(g(x))$ using the chain rule, we get that 
+                $$f'(g(x))\times g'(x) = \frac{d}{dx} x = 1 \implies g'(x) = \frac{1}{f'(g(x))}$$
+                Using this both the parts can be solved, solving is left to the reader.
+
+
+        \item Apply chain rule and simplify. Left to the reader.
         \end{enumerate}
 \end{document}
