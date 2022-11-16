@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\title{Tutorial 2 Solutions}
+\author{Arhaan Ahmad}
+\date{November 2022}
+
+\begin{document}
+        \maketitle
+                Note that the square brackets in the question are not meant to be anything like the greatest integer function. They are just brackets.
+        \begin{enumerate}
+                \item \begin{enumerate}
+                        \item This is false. Take $f(x) = x^2$ and $c=0$, and 
+                                $g(x) = \begin{cases}
+                                        \frac{1}{x^2} & \text{ if } x \neq 0\\
+                                        0 & \text{ if } x = 0\\
+                                \end{cases}$. 
+                                We have 
+                                $f(x)g(x) = \begin{cases}
+                                        1 & \text{ if } x \neq 0\\
+                                        0 & \text{ if } x = 0\\
+                                \end{cases}$. 
+                                So $\lim_{x\to 0} f(x)g(x) = 1 \neq 0$
+                         \item If $g(x)$ is bounded, let $\max |g(x)| = M$. 
+                                 Since $\lim_{x\to c} f(x) = 0$, we have that 
+                                 $$\forall \epsilon > 0, \exists \delta > 0, \text{ such that } |f(x) - 0 | < \epsilon \text{ when } 0 < |x-c| < \delta$$
+
+
+                                 For a particular epsilon $\epsilon_0$, let $\delta_0$, be the delta that is such that 
+                                 $|f(x) - 0 | < \frac{\epsilon_0}{M} \text{ when } 0 < |x-c| < \delta_0$
+
+                                 Now, whenever $0 < |x-c| < \delta_0$, 
+                                 $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times M < \frac{\epsilon_0}{M} \times M = \epsilon_0$$
+                                 
+                                 Hence, the limit of $\lim_{x\to c}f(x)g(x)$ exists and is equal to $0$.
+                         \item Let $\lim_{x \to c} g(x)$ be L. We have that 
+
+                                 $$\exists \delta_0 > 0 \text{ such that } |g(x) - L| < |L|\text{ when } 0 < |x-c| < \delta_0$$
+                                 $$\implies |g(x)| - |L| < |L| \implies |g(x)| < 2|L| \text{ when } 0 < |x-c| < \delta_0$$
+
+                                 For a particular epsilon $\epsilon_1$, let $\delta_1$, be the delta that is such that 
+                                 $|f(x) - 0 | < \frac{\epsilon_1}{2|L|} \text{ when } 0 < |x-c| < \delta_1$
+
+                         Now, $\delta_3 = \min(\delta_0, \delta_1)$ is such that  whenever $0 < |x-c| < \delta_3$, 
+                                 $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times 2|L| < \frac{\epsilon_1}{2|L|} \times 2|L| = \epsilon_1$$
+
+                \end{enumerate}
+        \item Let $\lim_{x\to \alpha}f(x) = L$
+                $$|f(\alpha+h) - f(\alpha-h) - 0| = |f(\alpha+h) - L - (f(\alpha-h) - L)| < |f(\alpha+h)-L| + |f(\alpha-h) - L|$$
+
+                Since $\lim_{x\to \alpha}f(x) = L$
+                $\forall \epsilon, \exists \delta  \text{ such that } |f(x) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |x-\alpha| < \delta $
+                Rewriting $h = x-\alpha$, we get
+                $\forall \epsilon, \exists \delta_0  \text{ such that } |f(\alpha + h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_0 $
+                Again rewriting with $h = \alpha-x$, we get 
+                $$
+                \forall \epsilon, \exists \delta_1  \text{ such that } |f(\alpha - h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_1
+                $$
+                From these two statements, we get that
+                $$\forall \epsilon, \exists \delta  \text{ such that } |f(\alpha-h) - L| + |f(\alpha - h) - L| < \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)$$
+                $$
+                \implies \forall \epsilon, \exists \delta  \text{ such that } |f(\alpha-h) - f(\alpha - h)|< \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)
+                $$
+
+                One could have also argued the same using algebra of limits on functions.
+
+                The converse of the result would be that if $\lim_{h\to 0} f(\alpha+h) - f(\alpha-h) = 0$, then $\lim_{x\to \alpha}f(x)$ exists.
+                A counterexample to this would be 
+                $$f(x) = \begin{cases}
+                        \frac{1}{x^2} & \text{ for } x \neq 0\\
+                        
+                        0  & \text{ for } x =  0\\
+                \end{cases}$$
+                Take $\alpha = 0$, $f(0+h)-f(0-h) = 0$ for all $h$, since this is an even function, but $\lim_{x\to 0} f(x)$ does not exist.
+        \item \begin{enumerate}
+                \item 
+                        $$f(x) = \begin{cases}
+                                \sin \frac{1}{x}  &\text{ if } x\neq 0 \\
+                                 0 &\text{ if } x= 0 \\
+                            \end{cases}$$
+
+                            In the domain $(0, \infty)$, both $\sin(x)$ and $\frac{1}{x}$ are continuous, hence so is their composition. Same for the domain $(-\infty, 0)$. The only problem is at $x = 0$. The function, in fact, is not continuous at $x=0$. To show this, we'll use the sequential definition of a limit:
+
+                            The limit of a function $f$ at $a$ exists and is equal to $L$ if and only if for every sequence ${x_n} \to a$, $\lim_{n\to \infty}f(x_n) = L$
+
+                            Take ${x_n} = \frac{1}{2n\pi}$ and $y_n = \frac{1}{(2n+\frac{1}{2})\pi}$. We have that $\sin{x_n} = 0$ and $\sin{y_n} = 1$ for all n $\in \mathbf{N}$
+                            Thus, we have two sequences tending to $0$, such that $f(x_n)$ and $f(y_n)$ tend to different values, hence the limit of $\sin \frac{1}{x}$ does not exist at $x=0$
+                    \item 
+                        $$f(x) = \begin{cases}
+                                x\sin \frac{1}{x}  &\text{ if } x\neq 0 \\
+                                 0 &\text{ if } x= 0 \\
+                            \end{cases}$$
+
+                            Here again it is easy to argue continuity in the domains $(0, \infty)$ and $(-\infty, 0)$, using the fact the composition and products of continuous functions is continuous. At $x=0$, we need to find the limit and show that it is equal to $f(0) = 0$.
+
+
+                            $|x\sin \frac{1}{x}| = |x||\sin \frac{1}{x}| < |x|$, since the range of $\sin$ is $[-1, 1]$
+
+                            Hence,
+                            $$\forall \epsilon>0, \, |x\sin \frac{1}{x} - 0| < |x| < \epsilon  \text{ when } 0 < |x-0| < \epsilon$$
+                            Seeing that we can just set $\delta = \epsilon$ always, we get that $\lim_{x \to 0} f(x) = 0 = f(0)$. Hence the function is continuous for all reals.
+                    \item Note that the pieces of the function in $(1,2)$ and $(2,3)$ are continuous. So there can only be a discontinuity at $x = 2$
+                            The right hand and left hand limits at $x = 2$ can both be easily calculated to be $2$, however, $f(2) = 1$. Hence, the function is not continuous at $x=2$
+        \end{enumerate}
+\item We are given that $f(x+y) = f(x) + f(y)$. Functions with this property are also known as linear functions.
+        Set $x=y=0$ to get $f(0) = 2f(0) \implies f(0) = 0$
+
+$$f(c+h) = f(c) + f(h) \implies f(c+h)-f(c) = f(h) = f(h)-f(0)$$
+    Since $f$ is continuous at $0$
+    $$ \forall \epsilon \exists \delta  \text{ such that }|f(h)-0| < \epsilon  \text{ when } 0 < h < \delta$$
+    $$\implies \forall \epsilon \exists \delta  \text{ such that } |f(c+h) - f(c)| = |f(h)| < \epsilon\text{ when } 0 < h < \delta$$
+    $\implies$ f is continous for all $c \in \mathbf{R}$    
+
+        \end{enumerate}
+\end{document}
