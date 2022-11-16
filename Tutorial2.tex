@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 \usepackage{xcolor}\usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -18,6 +18,10 @@
 	left=20mm,
 	top=20mm,
 }
+\usepackage{graphicx}
+
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+
 \title{Tutorial 2 Solutions}
 \author{Arhaan Ahmad}
 \date{November 2022}
@@ -37,9 +41,9 @@
                                         1 & \text{ if } x \neq 0\\
                                         0 & \text{ if } x = 0\\
                                 \end{cases}$. 
-                                So $\lim_{x\to 0} f(x)g(x) = 1 \neq 0$
+                                So $\Lim{x\to 0} f(x)g(x) = 1 \neq 0$
                          \item If $g(x)$ is bounded, let $\max |g(x)| = M$. 
-                                 Since $\lim_{x\to c} f(x) = 0$, we have that 
+                                 Since $\Lim{x\to c} f(x) = 0$, we have that 
                                  $$\forall \epsilon > 0, \exists \delta > 0, \text{ such that } |f(x) - 0 | < \epsilon \text{ when } 0 < |x-c| < \delta$$
 
 
@@ -49,9 +53,9 @@
                                  Now, whenever $0 < |x-c| < \delta_0$, 
                                  $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times M < \frac{\epsilon_0}{M} \times M = \epsilon_0$$
                                  
-                                 Hence, the limit of $\lim_{x\to c}f(x)g(x)$ exists and is equal to $0$.\footnote{This remains true if instead ofbeing bounded in the entire domain, g is given to be bounded in a finite punctured neighborhood of $c$, which serves as a nice motivation for the next subpart} 
+                                 Hence, the limit of $\Lim{x\to c}f(x)g(x)$ exists and is equal to $0$.\footnote{This remains true if instead ofbeing bounded in the entire domain, g is given to be bounded in a finite punctured neighborhood of $c$, which serves as a nice motivation for the next subpart} 
  
-                         \item Let $\lim_{x \to c} g(x)$ be L. We have that 
+                         \item Let $\Lim{x \to c} g(x)$ be L. We have that 
 
                                  $$\exists \delta_0 > 0 \text{ such that } |g(x) - L| < |L|\text{ when } 0 < |x-c| < \delta_0$$
                                  $$\implies |g(x)| - |L| < |L| \implies |g(x)| < 2|L| \text{ when } 0 < |x-c| < \delta_0$$
@@ -63,16 +67,19 @@
                                  $$|f(x)g(x) - 0| = |f(x)g(x)| \leq |f(x)| \times 2|L| < \frac{\epsilon}{2|L|} \times 2|L| = \epsilon$$
 
                                  Hence,
-                         $$\forall \epsilon>0 \exists \delta_2>0  \text{ such that } |f(x)g(x) - 0| < \epsilon  \text{ when } 0 < |x-c| < \delta$$
+                         $$\forall \epsilon>0, \exists \delta_2>0  \text{ such that } |f(x)g(x) - 0| < \epsilon  \text{ when } 0 < |x-c| < \delta$$
                          which means that the limit exists and is equal to $0$, as we wanted to prove.
                 \end{enumerate}
-        \item Let $\lim_{x\to \alpha}f(x) = L$
+        \item Let $\Lim{x\to \alpha}f(x) = L$
                 $$|f(\alpha+h) - f(\alpha-h) - 0| = |f(\alpha+h) - L - (f(\alpha-h) - L)| < |f(\alpha+h)-L| + |f(\alpha-h) - L|$$
 
-                Since $\lim_{x\to \alpha}f(x) = L$
+                Since $\Lim{x\to \alpha}f(x) = L$
                 $\forall \epsilon>0, \exists \delta>0  \text{ such that } |f(x) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |x-\alpha| < \delta $
+
                 Rewriting $h = x-\alpha$, we get
-                $\forall \epsilon>0, \exists \delta_0>0  \text{ such that } |f(\alpha + h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_0 $
+                $$
+                \forall \epsilon>0, \exists \delta_0>0  \text{ such that } |f(\alpha + h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_0
+                $$
                 Again rewriting with $h = \alpha-x$, we get 
                 $$
                 \forall \epsilon>0, \exists \delta_1>0  \text{ such that } |f(\alpha - h) - L| < \frac{\epsilon}{2}  \text{ when } 0 < |h| < \delta_1
@@ -83,16 +90,16 @@
                 \implies \forall \epsilon>0, \exists \delta>0  \text{ such that } |f(\alpha-h) - f(\alpha - h)|< \epsilon  \text{ when } 0 < |h| < \delta = \min(\delta_1, \delta_2)
                 $$
 
-                One could have also argued the same using algebra of limits on functions.
+                Thus the limit exists.\footnote{One could have also argued the same using algebra of limits on functions.}
 
-                The converse of the result would be that if $\lim_{h\to 0} f(\alpha+h) - f(\alpha-h) = 0$, then $\lim_{x\to \alpha}f(x)$ exists.
-                A counterexample to this would be 
+                The converse of the result would be that if $\Lim{h\to 0} f(\alpha+h) - f(\alpha-h) = 0$, then $\Lim{x\to \alpha}f(x)$ exists.
+                A counterexample to this is 
                 $$f(x) = \begin{cases}
                         \frac{1}{x^2} & \text{ for } x \neq 0\\
                         
                         0  & \text{ for } x =  0\\
                 \end{cases}$$
-                Take $\alpha = 0$, $f(0+h)-f(0-h) = 0$ for all $h$, since this is an even function, but $\lim_{x\to 0} f(x)$ does not exist.
+                Take $\alpha = 0$, $f(0+h)-f(0-h) = 0$ for all $h$, since this is an even function, but $\Lim{x\to 0} f(x)$ does not exist.
         \item \begin{enumerate}
                 \item 
                         $$f(x) = \begin{cases}
@@ -102,9 +109,9 @@
 
                             In the domain $(0, \infty)$, both $\sin(x)$ and $\frac{1}{x}$ are continuous, hence so is their composition. Same for the domain $(-\infty, 0)$. The only problem is at $x = 0$. The function, in fact, is not continuous at $x=0$. To show this, we'll use the sequential definition of a limit:
 
-                            The limit of a function $f$ at $a$ exists and is equal to $L$ if and only if for every sequence ${x_n} \to a$, $\lim_{n\to \infty}f(x_n) = L$
+                            The limit of a function $f$ at $a$ exists and is equal to $L$ if and only if for every sequence ${x_n} \to a$, $\Lim{n\to \infty}f(x_n) = L$
 
-                            Take ${x_n} = \frac{1}{2n\pi}$ and $y_n = \frac{1}{(2n+\frac{1}{2})\pi}$. We have that $\sin{x_n} = 0$ and $\sin{y_n} = 1$ for all n $\in \mathbf{N}$
+                            Take ${x_n} = \frac{1}{2n\pi}$ and $y_n = \frac{1}{(2n+\frac{1}{2})\pi}$. We have that $\sin{x_n} = 0$ and $\sin{y_n} = 1$ for all n $\in \mathbb{N}$
                             Thus, we have two sequences tending to $0$, such that $f(x_n)$ and $f(y_n)$ tend to different values, hence the limit of $\sin \frac{1}{x}$ does not exist at $x=0$
                     \item 
                         $$f(x) = \begin{cases}
@@ -112,60 +119,58 @@
                                  0 &\text{ if } x= 0 \\
                             \end{cases}$$
 
-                            Here again it is easy to argue continuity in the domains $(0, \infty)$ and $(-\infty, 0)$, using the fact the composition and products of continuous functions is continuous. At $x=0$, we need to find the limit and show that it is equal to $f(0) = 0$.
+                            Here again it is easy to argue continuity in the domains $(0, \infty)$ and $(-\infty, 0)$, using the fact that the composition and products of continuous functions is continuous. At $x=0$, we need to find the limit and show that it is equal to $f(0) = 0$.
 
 
-                            $|x\sin \frac{1}{x}| = |x||\sin \frac{1}{x}| < |x|$, since the range of $\sin$ is $[-1, 1]$
+                            Notice that $|x\sin \frac{1}{x}| = |x||\sin \frac{1}{x}| < |x|$, since the range of $\sin$ is $[-1, 1]$
 
                             Hence,
-                            $$\forall \epsilon>0, \, |x\sin \frac{1}{x} - 0| < |x| < \epsilon  \text{ when } 0 < |x-0| < \epsilon$$
-                            Seeing that we can just set $\delta = \epsilon$ always, we get that $\lim_{x \to 0} f(x) = 0 = f(0)$. Hence the function is continuous for all reals.
+                            $$\forall \epsilon>0, \exists \delta,  \text{ such that }|x\sin \frac{1}{x} - 0| < |x| < \epsilon  \text{ when } 0 < |x-0| < \delta$$
+                            namely, one such delta would be $\delta = \epsilon$ always. We get that $\Lim{x \to 0} f(x) = 0 = f(0)$. Hence the function is continuous for all reals.
                     \item Note that the pieces of the function in $(1,2)$ and $(2,3)$ are continuous. So there can only be a discontinuity at $x = 2$
                             The right hand and left hand limits at $x = 2$ can both be easily calculated to be $2$, however, $f(2) = 1$. Hence, the function is not continuous at $x=2$
         \end{enumerate}
-\item We are given that $f(x+y) = f(x) + f(y)$. Functions with this property are also known as additive functions.
+\item We are given that $f(x+y) = f(x) + f(y)$. Functions with this property are also known as additive functions.\footnote{For more information about this, see \href{https://en.wikipedia.org/wiki/Cauchy\%27s_functional_equation}{this wikipedia entry}}
 
         Set $x=y=0$ to get $f(0) = 2f(0) \implies f(0) = 0$
 $$f(c+h) = f(c) + f(h) \implies f(c+h)-f(c) = f(h) = f(h)-f(0)$$
     Since $f$ is continuous at $0$
-    $$ \forall \epsilon>0 \exists \delta>0  \text{ such that }|f(h)-0| < \epsilon  \text{ when } 0 < h < \delta$$
-    $$\implies \forall \epsilon>0 \exists \delta>0  \text{ such that } |f(c+h) - f(c)| = |f(h)| < \epsilon\text{ when } 0 < h < \delta$$
-    \begin{center}$\implies$ f is continous for all $c \in \mathbf{R}$    
+    $$ \forall \epsilon>0, \exists \delta>0  \text{ such that }|f(h)-0| < \epsilon  \text{ when } 0 < h < \delta$$
+    $$\implies \forall \epsilon>0, \exists \delta>0  \text{ such that } |f(c+h) - f(c)| = |f(h)| < \epsilon\text{ when } 0 < h < \delta$$
+    \begin{center}$\implies$ f is continous for all $c \in \mathbb{R}$    
 
     \end{center}
-    For more information about this see \href{https://en.wikipedia.org/wiki/Cauchy\%27s_functional_equation}{this wikipedia entry}
 
 \item For $x \neq 0$, $\frac{1}{x}$ is differentiable while $\sin x$ and $x$ are differentiable at all points. Hence, a function formed by their compositions and products would also be differentiable at $x \neq 0$. At $x = 0$, we'll need to work by first principles.
-        We need to see if $\lim_{x\to 0} \frac{f(x)-f(0)}{x} = \lim_{x\to 0} \frac{f(x)}{x} = \lim_{x\to 0} x\sin \frac{1}{x}$ exists. Deja vu to q3 ii), the limit exists and is equal to 0. Hence f is differentiable on $\mathbf{R}$
+        We need to see if $\Lim{x\to 0} \frac{f(x)-f(0)}{x} = \Lim{x\to 0} \frac{f(x)}{x} = \Lim{x\to 0} x\sin \frac{1}{x}$ exists. Deja vu to q3 ii), the limit exists and is equal to 0. Hence f is differentiable on $\mathbb{R}$
+
         However, the derivative is not continuous. Using chain rule for $x\neq 0$, we get that 
         $$f'(x) = \begin{cases}
                     2x \sin \frac{1}{x}+ \cos \frac{1}{x} &  \text{ when } x \neq 0\\
                     0 &  \text{ when } x = 0\\
                 \end{cases}
                 $$
-                We can show that $\lim_{x\to 0} f'(x)$ does not exist, using a method similar to q3 i)
+                We can show that $\Lim{x\to 0} f'(x)$ does not exist, using a method similar to q3 i)
 
         \item We have that $\forall x,x+h \in (a,b)$
                 $$\frac{|f(x+h) - f(x)|}{|h|} < C |h|^{\alpha-1}$$
 
                 $$\implies -C|h|^{\alpha-1} < \frac{f(x+h) - f(x)}{h} < C |h|^{\alpha-1}$$
 
-                Since $\alpha -1 > 0$, $\lim_{h \to 0} C|h|^{\alpha-1} = \lim_{h \to 0} -C|h|^{\alpha-1} = 0$
+                Since $\alpha -1 > 0$, $\Lim{h \to 0} C|h|^{\alpha-1} = \Lim{h \to 0} -C|h|^{\alpha-1} = 0$
 
-                Hence, by sandwich theorem we can conclude that $\lim_{h\to 0}\frac{f(x+h) - f(x)}{h}$ exists and equals $0$. By definition, this means that f is differentiable over $(a, b)$ and $f'(x) = 0 \, \forall x \in (a,b)$
+                Hence, by sandwich theorem we can conclude that $\Lim{h\to 0}\frac{f(x+h) - f(x)}{h}$ exists and equals $0$. By definition, this means that f is differentiable over $(a, b)$ and $f'(x) = 0 \, \forall x \in (a,b)$
 
         \item
 
-                \begin{align*}\lim_{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} &= \lim_{h\to 0^+}\frac{\frac{f(c+h)-f(c)}{h} + \frac{f(c) - f(c-h)}{h}}{2}\\ 
-                                                                       &= \frac{\lim_{h\to 0^+}\frac{f(c+h)-f(c)}{h} + \lim_{h\to 0^+}\frac{f(c) - f(c-h)}{h}}{2}\\
+                \begin{align*}\Lim{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} &= \Lim{h\to 0^+}\frac{\frac{f(c+h)-f(c)}{h} + \frac{f(c) - f(c-h)}{h}}{2}\\ 
+                                                                       &= \frac{\Lim{h\to 0^+}\frac{f(c+h)-f(c)}{h} + \Lim{h\to 0^+}\frac{f(c) - f(c-h)}{h}}{2}\\
                 \end{align*}
                
-                Since f is differentiable, $\lim_{h\to 0^+}\frac{f(c+h)-f(c)}{h} = $ Right hand derivative $ = $ Left hand derivative $ = \lim_{h\to 0^+}\frac{f(c) - f(c-h)}{h} = f'(c)$
+                Since f is differentiable, $\Lim{h\to 0^+}\frac{f(c+h)-f(c)}{h} = $ Right hand derivative $ = $ Left hand derivative $ = \Lim{h\to 0^+}\frac{f(c) - f(c-h)}{h} = f'(c)$ and hence, we are done.
 
-                Hence, we are done.
-
-                The converse is false, consider $f(x) = |x|$ and $c = 0$. Then $\lim_{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} = \lim_{h\to 0^+}\frac{h - h}{2} = 0$, but the function is not differentiable at 0.
-        \item First, note that if $\exists c  \text{ such that } f(c) = 0$, then $f(x) = f(x-c+c) =f(x-c)f(c) = 0\, \forall x \in \mathbf{R}$. In this case f is obviously differentiable, with $f'(c) = 0 \forall c = f'(0)f(c)$ (trivially).
+                The converse is false, consider $f(x) = |x|$ and $c = 0$. Then $\Lim{h\to 0^+} \frac{f(c+h) - f(c-h)}{2h} = \Lim{h\to 0^+}\frac{h - h}{2} = 0$, but the function is not differentiable at 0.
+        \item First, note that if $\exists c  \text{ such that } f(c) = 0$, then $f(x) = f(x-c+c) =f(x-c)f(c) = 0\, \forall x \in \mathbb{R}$. In this case f is obviously differentiable, with $f'(c) = 0 \forall c = f'(0)f(c)$ (trivially).
 
                 The only other possibility is that f is always non-zero. Set $x=y=0$ to get
                 $$f(0) = f(0)^2 \implies f(0) = 0 \text{ or } 1$$.
@@ -173,11 +178,13 @@ $$f(c+h) = f(c) + f(h) \implies f(c+h)-f(c) = f(h) = f(h)-f(0)$$
 
                 $$\frac{f(c+h)-f(c)}{h} = \frac{f(c)f(h) - f(c)}{h} = f(c)\times \frac{f(h) - 1}{h}$$
 
-                Since $f'(0) = \lim_{h\to 0}\frac{f(h) - 1}{h}$ exists, we have that $\lim_{h\to 0}\frac{f(c+h)-f(c)}{h} =  \lim_{h\to 0} f(c)\times \frac{f(h) - 1}{h}$ exists and is equal to $f(c)\times \lim_{h\to 0}\frac{f(h)-f(0)}{h} = f(c)f'(0)$. Thus, by definition, $f$ is differentiable at every $c\in \mathbf{R}$ and $f'(c) = f(c) f'(0)$
+                Since $f'(0) = \Lim{h\to 0}\frac{f(h) - 1}{h}$ exists, we have that $\Lim{h\to 0}\frac{f(c+h)-f(c)}{h} =  \Lim{h\to 0} f(c)\times \frac{f(h) - 1}{h}$ exists and is equal to $f(c)\times \Lim{h\to 0}\frac{f(h)-f(0)}{h} = f(c)f'(0)$. Thus, by definition, $f$ is differentiable at every $c\in \mathbb{R}$ and $f'(c) = f(c) f'(0)$
 
-        \item Calculating derivative of inverse of a function. Let $f: (a, b) \to \mathbf{R}$ be a differentiable and invertible function. Let the inverse be denoted by $g(x)$
+        \item Calculating derivative of inverse of a function. Let $f: (a, b) \to \mathbb{R}$ be a differentiable and invertible function. Let the inverse be denoted by $g(x)$, which means that 
 
-                $f(g(x)) = x$
+                $$
+                f(g(x)) = x
+                $$
 
                 Differentating $f(g(x))$ using the chain rule, we get that 
                 $$f'(g(x))\times g'(x) = \frac{d}{dx} x = 1 \implies g'(x) = \frac{1}{f'(g(x))}$$
