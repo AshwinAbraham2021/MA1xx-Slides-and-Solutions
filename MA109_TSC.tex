@@ -1,0 +1,949 @@
+\documentclass[handout, dvipsnames]{beamer}
+\mode<presentation>{}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools, mathrsfs}
+\setbeamertemplate{theorems}[numbered]
+\title{MA 109 TSC I: Concept Recap}
+\author[Aryaman Maithani]{\texorpdfstring{Aryaman Maithani\\\url{https://tinyurl.com/MA109-2022}}{Aryaman Maithani}}
+\date{Autumn Semester {\color{red}2022}-23}
+\institute[IITB]{IIT Bombay}
+\usetheme{Warsaw}
+% \usecolortheme{beetle}
+\hypersetup{colorlinks=true}
+\addtobeamertemplate{footline}{\hypersetup{allcolors=.}}{}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
+
+\newcommand{\fl}[1]{\left\lfloor #1 \right\rfloor}
+% \newcommand{\Res}{\operatorname{Res}}
+% \renewcommand{\exp}{\operatorname{exp}}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{rem}[thm]{Remark}
+
+\begin{document}
+\tikzset{lab dis/.store in=\LabDis,
+  lab dis=-0.4,
+  ->-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{>}; \node at (0,\LabDis) {#2};}},postaction={decorate}},
+  -<-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{<}; \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  -*-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {{\fill (0,0) circle (1.5pt);} \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  }
+\begin{frame}
+    \titlepage
+\end{frame}
+\begin{frame}{Week 1}
+    \begin{defn}[Sequences]
+        \uncover<2->{A sequence {\color{red}in $X$} }\uncover<3->{is a function $a:\mathbb{N} \to X.$ }\uncover<4->{We usually write $a_n$ instead of $a(n).$ }
+    \end{defn}
+    \begin{defn}[Convergence]
+        \uncover<5->{Let $X$ be a \underline{space}. }\uncover<6->{Let $(a_n)$ be a sequence {\color{red}in X}. }\uncover<7->{Let $L {\color{red}\;\in X}$. }\uncover<8->{We write
+        \begin{equation*} 
+            \lim_{n\to \infty}a_n = L
+        \end{equation*} }\uncover<9->{if for every $\epsilon > 0,$ }\uncover<10->{there exists $N \in \mathbb{N}$ }\uncover<11->{such that }\uncover<12->{
+        \begin{equation*} 
+            |a_n - L| < \epsilon
+        \end{equation*} }\uncover<13->{for every $n > N.$ }\uncover<14->{$L$ is said to be the \emph{limit} of the sequence. }
+    \end{defn}
+    \uncover<15->{In this case, we say that $(a_n)$ converges }\uncover<16->{{\color{red}in $X$}. }
+\end{frame}
+\begin{frame}{Week 1}
+    Note the highlights. \uncover<2->{They are important. }\uncover<3->{Consider $X = \mathbb{R}$ }\uncover<4->{and the sequence $a_n \vcentcolon= 1/n.$ }\\
+    \uncover<5->{As we saw in class, $(a_n)$ converges to $0 \in \mathbb{R}.$ }\uncover<6->{Thus, $(a_n)$ converges in $\mathbb{R}.$ }
+
+    \uncover<7->{However, consider $X = (0, 1]$ }\uncover<8->{and $(a_n)$ be as earlier. }\uncover<9->{This sequence does not converge (in $X$) anymore. }
+
+    \uncover<10->{Similarly, consider $X = \mathbb{Q}$ }\uncover<11->{and define $a_n = \dfrac{\fl{10^n\pi}}{10^n}.$ }\uncover<12->{
+    \begin{equation*} 
+        3.1, 3.14, 3.141, \ldots
+    \end{equation*} }\uncover<13->{The above is a sequence in $\mathbb{Q}.$ }\uncover<14->{However, it does not converge in $\mathbb{Q}.$ }
+\end{frame}
+\begin{frame}{Week 1}
+    \begin{defn}[Cauchy Sequences]
+        \uncover<2->{Let $X$ be a \underline{space}. }\uncover<3->{Let $(a_n)$ be a sequence in $X.$ }\uncover<4->{$(a_n)$ is said to be \emph{Cauchy} }\uncover<5->{if for every $\epsilon > 0,$ }\uncover<6->{there exists $N \in \mathbb{N}$ }\uncover<7->{such that }\uncover<8->{
+        \begin{equation*} 
+            |a_n - a_m| < \epsilon
+        \end{equation*} }\uncover<9->{for all $n, m > N.$ }
+    \end{defn}
+    \uncover<10->{\begin{prop}[Convergence $\implies$ Cauchy]
+        \uncover<11->{If $(a_n)$ is a convergent sequence }\uncover<12->{in any space $X,$ }\uncover<13->{then $(a_n)$ is Cauchy. }
+    \end{prop} }   
+\end{frame}
+\begin{frame}{Week 1}
+    \begin{defn}[Completeness]
+        \uncover<2->{A \underline{space} $X$ is said to be \emph{complete} }\uncover<3->{if every Cauchy sequence in $X$ }\uncover<4->{converges }\uncover<5->{{\color{red} in $X$}. }
+    \end{defn}
+    \begin{thm}[$\mathbb{R}$ is complete]
+        \uncover<6->{$\mathbb{R}$ is complete. }
+    \end{thm}
+    \uncover<7->{This theorem is trivial and not trivial at the same time. }\uncover<8->{You don't know what $\mathbb{R}$ \emph{truly} is. }\uncover<9->{So you can't really prove this. }
+
+    \uncover<10->{\textbf{Non-examples:} }\uncover<11->{We saw some examples earlier. }\uncover<12->{Go back and see that $\mathbb{Q}$ and $(0, 1]$ are \textbf{not} complete. }
+
+    \uncover<13->{\textbf{Exercise:} Show that $\mathbb{N}, \mathbb{Z}$ are complete. }\uncover<14->{(What property do you really need? Can you generalise this?) }
+\end{frame}
+\begin{frame}{Week 1}
+    Now, we digress a bit to see what $\mathbb{R}$ and completeness really means.
+
+    It is okay if you don't understand every single thing. It is more or less for you to know ``okay, whatever we say works'' even if you don't know the exact details why.
+\end{frame}
+\begin{frame}{Week 1}
+    What is $\mathbb{R}?$ \uncover<2->{Well, all one really needs is to know the following two slides about $\mathbb{R}.$ }
+
+    \uncover<3->{$\mathbb{R}$ is a field. }\uncover<4->{This means that the familiar properties of addition/multiplication are true. }\uncover<5->{(Commutativity, associativity, existence of identity, inverses, and distributivity.) }
+
+    \uncover<6->{$\mathbb{R}$ is ordered. }\uncover<7->{There is a binary operation $\le$ on $\mathbb{R}$ which is }\uncover<8->{reflexive, }\uncover<9->{anti-symmetric, }\uncover<10->{transitive, }\uncover<11->{\emph{and any two elements can be compared.} }
+
+    \uncover<12->{$\mathbb{R}$ is an ordered field. }\uncover<13->{All this means is that there is an order which is actually compatible with $+$ and $\cdot.$ }\uncover<14->{What does this mean? }
+
+    \uncover<15->{$x < y \implies x + z < y + z$ for all $x, y, z \in \mathbb{R},$}\\
+    \uncover<16->{$x < y \implies x \cdot z < y \cdot z$ for all $x, y \in \mathbb{R}$ and $z \in \mathbb{R}_{> 0}.$ }
+\end{frame}
+\begin{frame}{Week 1}
+    Note that all the properties earlier are also satisfied by $\mathbb{Q}.$ Here's what sets $\mathbb{R}$ apart:
+
+    \uncover<2->{
+    \begin{tcolorbox}
+        $\mathbb{R}$ is complete.
+    \end{tcolorbox} }
+
+    \uncover<3->{There's another way of defining completeness of $\mathbb{R},$ which coincides with the usual. }\uncover<4->{It is the following: }
+    \uncover<5->{\begin{tcolorbox}
+        Every non-empty subset of $\mathbb{R}$\uncover<6->{ which is bounded above }\uncover<7->{has a least upper bound. }
+    \end{tcolorbox} }
+    \uncover<8->{{\color{red}The} least upper bound is called \emph{supremum.} }
+
+    \uncover<9->{Note that \textbf{neither} of the above grey boxes is true if we replace $\mathbb{R}$ by $\mathbb{Q}.$ }
+\end{frame}
+\begin{frame}{Week 1}
+    What one must really ask at this point is: \uncover<2->{how do we know that $\mathbb{R}$ exists? }
+
+    \uncover<3->{That is, how do we know that there is some set $\mathbb{R}$ }\uncover<4->{with some operations $+, \cdot$ }\uncover<5->{and binary relation $<$ }\uncover<6->{which satisfies all the listed properties? }
+
+    \uncover<7->{That is what I refer to as a non-trivial part. }\uncover<8->{It can be done but is not useful to us at the moment. }
+\end{frame}
+\begin{frame}{Week 1}
+    Back to sequences now.
+
+    \begin{defn}[Monotonically increasing sequences]
+        \uncover<2->{A sequence $(a_n)$ is said to be \emph{monotonically increasing} }\uncover<3->{if
+        \begin{equation*} 
+            a_{n + 1} \ge a_n
+        \end{equation*} }\uncover<4->{for all $n \in \mathbb{N}.$ }
+    \end{defn}
+    \uncover<5->{Similarly, one defines a monotonically decreasing sequence. }\uncover<6->{A sequence is said to be monotonic if it is either monotonically increasing or monotonically decreasing. }
+\end{frame}
+\begin{frame}{Week 1}
+    \uncover<1->{\begin{defn}[Eventually monotonically increasing sequences]
+        \uncover<2->{A sequence $(a_n)$ is said to be \emph{eventually monotonically increasing} }\uncover<3->{if there exists $N \in \mathbb{N}$ such that }\uncover<4->{
+        \begin{equation*} 
+            a_{n + 1} \ge a_n
+        \end{equation*} }\uncover<5->{for all $n \ge N.$ }
+    \end{defn} }
+    \vspace{-3mm}
+    \uncover<6->{As earlier, we can define eventually monotonically decreasing sequences and simply, eventually monotonic sequences. }
+
+    \uncover<7->{\begin{thm}[]
+        An eventually monotonic sequence {\color{red}in $\mathbb{R}$} which is bounded converges {\color{red}in $\mathbb{R}$}.
+    \end{thm} }
+    \uncover<8->{Again, the above is not true if we take $\mathbb{Q}$ instead of $\mathbb{R}.$ }\uncover<9->{The $\pi$ sequence shows this. }\uncover<10->{In fact, the above is really a consequence of completeness. }
+\end{frame}
+\begin{frame}{Week 1}
+    We also saw series in the lectures. There's nothing much to be said about it. \uncover<2->{(As far as this course is concerned.) }\uncover<3->{In reality, there is a lot more to be said about series and various tests for seeing if a series converges. }\uncover<4->{Some of you will see this in future courses like MA 205. }\uncover<5->{Those taking a minor in Mathematics will also come across it in MA 403. }\uncover<6->{Of course, the ones in the Mathematics department will also see it in various courses. }
+
+    \uncover<7->{For us, all we need to know is that convergence of a series is just the convergence of the \underline{sequence} of its \emph{partial sums.} }\uncover<8->{Thus, we are back in the case where we study sequences! }
+\end{frame}
+\begin{frame}{Week 1}
+    We then moved on to the definition of limits of functions defined on intervals.
+
+    \uncover<2->{For the remainder, we fix $a, b \in \mathbb{R}$ }\uncover<3->{such that $a < b.$ }\uncover<4->{(Just to recall, $\infty$ is not an element of $\mathbb{R}.$) }
+
+    \uncover<5->{\begin{defn}[Limit] \label{defn:limit}
+        Let $f:(a, b) \to \mathbb{R}$ be a function. \uncover<6->{Let $x_0 \in {\color{red}[}a, b{\color{red}]}$ }\uncover<7->{and $L {\color{red}\;\in \mathbb{R}}.$ }\uncover<8->{Then, we write
+        \begin{equation*} 
+            \lim_{x\to x_0}f(x) = L
+        \end{equation*} }\uncover<9->{if for every $\epsilon > 0,$ }\uncover<10->{there exists $\delta > 0$ }\uncover<11->{such that }\uncover<12->{
+        \begin{equation*} 
+            |f(x) - L| < \epsilon
+        \end{equation*} }\uncover<13->{for all ${\color{red}x \in (a, b)}$ }\uncover<14->{such that ${\color{red}0 <\;}|x - x_0| < \delta.$ }
+    \end{defn} }
+\end{frame}
+\begin{frame}{Week 1}
+    Note in the above that we can still talk about limits at points at which is the function is \emph{not} defined.
+
+    \uncover<2->{If the thing in the previous slide does happen, }\uncover<3->{then we say that $f(x)$ tends to $l$ as $x$ tends to $x_0.$ }\uncover<4->{Or that $f$ has a limit $l$ at $x_0.$ }
+
+    \uncover<5->{If no such $l$ exists, then we say that $f$ does not have any limit at $x_0.$ }
+\end{frame}
+\begin{frame}{Week 1}
+    We then also defined limit at $\pm\infty.$
+
+    \begin{defn}[Limit at $\infty$]
+        \uncover<2->{Let $A \subset \mathbb{R}$ be a set which is not bounded above. }\uncover<3->{Let $f:A\to\mathbb{R}$ be a function }\uncover<4->{and let $L \in \mathbb{R}.$ }\uncover<5->{We say
+        \begin{equation*} 
+            \lim_{x\to \infty}f(x) = L
+        \end{equation*} }\uncover<6->{if for every $\epsilon > 0,$ }\uncover<7->{there exists $X \in \mathbb{R}$ such that }\uncover<8->{
+        \begin{equation*} 
+            |f(x) - L| < \epsilon
+        \end{equation*} }\uncover<9->{for all {\color{red} $x \in A$} }\uncover<10->{such that $x > X.$ } 
+    \end{defn}
+    \uncover<11->{Similarly, we have the limit at $-\infty.$ }
+\end{frame}
+\begin{frame}{Week 1}
+    \begin{tcolorbox}
+        Doubts.
+    \end{tcolorbox}
+\end{frame}
+
+\begin{frame}{Week 2}
+    Last week, we had \emph{limited} ourselves to \emph{limits}. Today, we \uncover<2->{\emph{continue} }\uncover<3->{with }\uncover<4->{\emph{continuity}. }\uncover<5>{Ba-dum-tss. }
+
+    \uncover<6->{This is quite simple, using whatever we've already seen. }
+    \uncover<7->{\begin{defn}[Continuity]
+        If $f:[a, b] \to \mathbb{R}$ is a function \uncover<8->{and $c \in [a, b],$ }\uncover<9->{then $f$ is said to be }\uncover<10->{\emph{continuous at the point $c$} }\uncover<11->{if (and only if)
+        \begin{equation*} 
+            \lim_{x\to c}f(x) = f(c).
+        \end{equation*} } 
+    \end{defn} }
+    \uncover<12->{We simply say ``$f$ is continuous'' if it is continuous at every point in the domain. }\uncover<13->{If $f$ is not continuous at a point $c$ \emph{in the domain}, then we say that $f$ is discontinuous at $c.$ }   
+\end{frame}
+\begin{frame}{Week 2}
+    We have the usual rules which tell us that sum/product/composition of continuous functions is continuous. \uncover<2->{If $f$ is continuous at $c$ and $f(c) \neq 0,$ then $1/f$ is continuous at $c.$ }\uncover<3->{We had also seen that the square root function is continuous. }\uncover<4->{We now state an important property of continuous functions. }
+    \uncover<5->{\begin{defn}[Intermediate Value Property]
+        Suppose $f:[a, b] \to \mathbb{R}$ is a continuous function. \uncover<6->{Let $u \in \mathbb{R}$ be between $f(a)$ and $f(b).$ }\uncover<7->{Then, there exists $c \in [a, b]$ }\uncover<8->{such that $f(c) = u.$ }
+    \end{defn} }
+    \uncover<9->{Note carefully that the domain is an interval. }
+\end{frame}
+\begin{frame}{Week 2}
+    Now, we state another property, called the extreme value theorem.
+    \begin{thm}[Extreme value theorem]
+        \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be continuous. }\uncover<3->{Then, there exist $x_1, x_2 \in [a, b]$ }\uncover<4->{such that }\uncover<5->{
+        \begin{equation*} 
+            f(x_1) \le f(x) \le f(x_2)
+        \end{equation*} }\uncover<6->{for all $x \in [a, b].$ }
+    \end{thm}
+    \uncover<7->{Note very carefully that the above not only shows that the image of $f$ is bounded }\uncover<8->{but also that the bounds are attained! }\uncover<9->{Note that the domain was a \underline{closed and bounded} interval. }
+\end{frame}
+\begin{frame}{Week 2}
+    Recall that a (non-empty) set which is bounded above can have many upper bounds. \uncover<2->{However, completeness of $\mathbb{R}$ tells us that there is a \emph{least} upper bound. }\uncover<3->{We had called this the \emph{supremum}. }
+
+    \uncover<4->{Similarly, we had defined \emph{infimum}. }
+
+    \uncover<5->{By abuse of notation, given a function $f:X \to \mathbb{R},$ }\uncover<6->{if the image $f(X) \subset \mathbb{R}$ is bounded above, }\uncover<7->{then the supremum of the image is called the supremum of $f$ \underline{on $X$}. }\\
+    \uncover<8->{Analogous comments hold for infimum. }
+
+    \uncover<9->{Thus, what the previous theorem told us was that not only is the image bounded but the supremum and infimum are actually attained. }\uncover<10->{(If the function is continuous and defined on a closed and bounded interval, that is.) }
+\end{frame}
+\begin{frame}{Week 2}
+    \textbf{Non-examples} of the previous theorem:
+
+    \uncover<2->{Consider $f:(0, 1) \to \mathbb{R}$ }\uncover<3->{defined by
+    \begin{equation*} 
+        f(x) = x.
+    \end{equation*} }\uncover<4->{The image is bounded but the infimum/supremum are not attained. }
+
+    \uncover<5->{Consider $f:(0, 1) \to \mathbb{R}$ }\uncover<6->{defined by
+    \begin{equation*} 
+        f(x) = \dfrac{1}{x}.
+    \end{equation*} }\uncover<7->{The image is not bounded above. }\uncover<8->{It is bounded below but the infimum is not attained. }
+\end{frame}
+\begin{frame}{Week 2}
+    We saw one interesting result that helps simplify our life in some scenarios.
+    \begin{thm}[Sequential criterion]
+        \uncover<2->{Let $f:A \to \mathbb{R}$ be a function }\uncover<3->{and let $a \in A.$ }\uncover<4->{Then, $f$ is continuous at $a$ iff }\uncover<5->{given any sequence $(a_n)$ {\color{red}in $A$} }\uncover<6->{such that $a_n \to a,$ }\uncover<7->{we have $f(a_n) \to f(a).$ }
+    \end{thm}
+    \uncover<8->{This makes life simpler because it is sometimes easier to deal with sequences. }\uncover<9->{We had seen an example of this when we proved that a certain oscillatory function does not have a limit. }\uncover<10->{Do you remember which? }
+\end{frame}
+\begin{frame}{Week 2}
+    Next, we defined derivative. This was also not difficult.
+    \begin{defn}[Derivative]
+        \uncover<2->{Let $f:(a, b) \to \mathbb{R}$ be a function }\uncover<3->{and let $c \in (a, b).$ }\uncover<4->{$f$ is said to be \emph{differentiable at the point $c$} }\uncover<5->{if the following limit exists: }\uncover<6->{
+        \begin{equation*} 
+            \lim_{h\to 0}\dfrac{f(c + h) - f(c)}{h}.
+        \end{equation*} }\uncover<7->{In such a case, we call the value of the above limit the derivative of $f$ at $c$ }\uncover<8->{and denote it by $f'(c).$ }
+    \end{defn}
+\end{frame}
+\begin{frame}{Week 2}
+    We then have the usual rules about product/sum/composition of differentiable functions again being differentiable. \uncover<2->{Of course, we \textbf{don't} have the naïve product rule but rather $(fg)'(c) = f'(c)g(c) + f(c)g'(c).$ }\uncover<3->{We then looked at minima/maxima. }
+
+    \uncover<4->{\begin{defn}[Local maximum]
+        Let $f:X \to \mathbb{R}$ be a function \uncover<5->{and let $x_0 \in X.$ }\uncover<6->{Suppose that there is an interval $(c, d) \subset X$ containing $x_0.$ }\uncover<7->{If we have $f(x_0) \ge f(x)$ }\uncover<8->{for all $x \in (c, d),$ }\uncover<9->{then we say that $f$ has a \emph{local maximum} at $x_0.$ }
+    \end{defn} }
+    \uncover<10->{Of course, we have an analogous definition for minimum. }\uncover<11->{Note that here, we have that $x_0$ is an ``interior point.'' }\uncover<12->{That is, there is an interval \emph{around} $x_0$ contained within the domain. }
+\end{frame}
+\begin{frame}{Week 2}
+    \begin{thm}[Fermat's Theorem]
+        \uncover<2->{If $f:X\to \mathbb{R}$ is differentiable }\uncover<3->{and has a local minimum or maxmimum at a point $x_0 \in X,$ }\uncover<4->{then $f'(x_0) = 0.$ }
+    \end{thm}
+    \uncover<5->{Once again, note that this only talks about ``interior points.'' }
+\end{frame}
+\begin{frame}{Week 2}
+    We then saw Rolle's Theorem. Note the hypothesis carefully.
+    \begin{thm}[Rolle's Theorem]
+        \uncover<2->{Suppose $f:{\color{red}[}a, b{\color{red}]} \to \mathbb{R}$ is a \emph{continuous} function. }\uncover<3->{Further, assume that it is differentiable on $(a, b).$ }\uncover<4->{In this case, if $f(a) = f(b),$ }\uncover<5->{then $f'(c) = 0$ for some $c \in (a, b).$ }
+    \end{thm}
+    \uncover<6->{Using the above, we have a more general result. }\uncover<7->{\begin{thm}[Mean Value Theorem]
+        Let $f$ be continuous and differentiable as above. \uncover<8->{There exists $c \in (a, b)$ }\uncover<9->{such that
+        \begin{equation*} 
+            f'(c) = \dfrac{f(b) - f(a)}{b - a}.
+        \end{equation*} } 
+    \end{thm} }
+\end{frame}
+\begin{frame}{Week 2}
+    We then saw a theorem which said ``derivatives have IVP.'' To be more precise:
+    \begin{thm}[Darboux's Theorem] \label{thm:darboux}
+        \uncover<2->{Let $f:(a, b) \to \mathbb{R}$ be a differentiable function. }\uncover<3->{Let $c < d$ be points in $(a, b).$ }\uncover<4->{Let $u$ be between $f'(c)$ and $f'(d).$ }\uncover<5->{Then, there exists $x_0 \in (c, d)$ such that }\uncover<6->{
+        \begin{equation*} 
+            f'(x_0) = u.
+        \end{equation*} }
+    \end{thm}
+    \uncover<7->{Note that the derivative of a (differentiable) function need not be continuous. }\uncover<8->{We shall see an example in the tutorial today, in fact. }\uncover<9->{However, the above theorem tells us how the derivative can't have ``jump'' discontinuity. }
+\end{frame}
+\begin{frame}{Week 2}
+    \begin{tcolorbox}
+        Doubts.
+    \end{tcolorbox}
+\end{frame}
+
+\begin{frame}{Week 3}
+    What have we seen so far? \uncover<2->{Continuity, }\uncover<3->{IVP, }\uncover<4->{EVT, }\uncover<5->{sequential criterion, }\uncover<6->{derivative, }\uncover<7->{(local) maximum and minimum, }\uncover<8->{Fermat's not-Last Theorem, }\uncover<9->{Rolle's and Mean Value Theorems, }\uncover<10->{Darboux's Theorem. }\hfill\uncover<11->{{\color{gray}(Whew!)} }
+
+    \uncover<11->{We also saw an example of a function with non-continuous derivative. }\uncover<12->{What was it? }
+
+    \uncover<13->{$f:\mathbb{R} \to \mathbb{R}$ defined as }\uncover<14->{
+    \begin{equation*} 
+        f(x) \vcentcolon= \begin{cases}
+            x^2\sin\left(\dfrac{1}{x}\right) & x \neq 0,\\
+            0 & x = 0.
+        \end{cases}
+    \end{equation*} }
+    \uncover<15->{Keep this in mind. }\hfill\uncover<16->{{\color{gray}please.} }
+\end{frame} 
+
+\begin{frame}{Week 3}
+    We turn back to maximum and minimum and recall a theorem you must have seen in your previous life.
+
+    \uncover<2->{\begin{thm}[Second derivative test]
+        \uncover<3->{Assume that $f:[a, b] \to \mathbb{R}$ is continuous. }
+
+        \uncover<4->{Suppose that $x_0 \in (a, b)$ }\uncover<5->{is such that $f'(x_0) = 0$ and $f''(x_0)$ exists. }
+
+        \uncover<6->{Then, }
+        \begin{enumerate}
+            \uncover<7->{\item $f''(x_0) > 0 \implies f$ has a local minimum at $x_0,$ }
+            \uncover<8->{\item $f''(x_0) < 0 \implies f$ has a local maximum at $x_0.$ }
+        \end{enumerate}
+        \uncover<9->{If $f''(x_0) = 0,$ then nothing can be concluded. }
+    \end{thm} }
+\end{frame}
+\begin{frame}{Week 3}
+    We now look at concavity and convexity. \uncover<2->{For what follows, $I$ will always denote an interval. }\uncover<3->{(It could be open/close/neither/unbounded.) }
+    \begin{defn}[Convex]
+        \uncover<4->{A function $f : I \to \mathbb{R}$ is said to be \emph{convex} if }\uncover<5->{for every $x_1, x_2 \in I$ }\uncover<6->{and every $t \in [0, 1],$ }\uncover<7->{we have
+        \begin{equation*} 
+            f(tx_1 + (1 - t)x_2) {\color{blue}\;\le\;} tf(x_1) + (1 - t)f(x_2).
+        \end{equation*} }\uncover<8->{More graphically, given any two points on the graph of the function, }\uncover<9->{the line segment joining the two points }\uncover<10->{lies {\color{red}above} the graph. }
+    \end{defn}
+    \uncover<11->{The definition of a \emph{concave} function is obtained by replacing ${\color{blue}\le}$ with ${\color{blue}\ge}$ and ``{\color{red}above}'' with ``{\color{red}below}.'' }
+\end{frame}
+\begin{frame}{Week 3}
+    Note that the definition does not even assume continuity. \uncover<2->{In particular, the function need not be differentiable, }\uncover<3->{much less twice differentiable. }
+
+    \uncover<4->{However, if we do assume that it's differentiable, then we can say some things. }\uncover<5->{If we assume twice differentiability, we can say some more things. }\uncover<6->{I have put a summary of these on the next slide. }
+
+    \uncover<7->{Read it some day. }
+\end{frame}
+\begin{frame}{Week 3}
+    \begin{prop}
+        Suppose $f: I \to \mathbb{R}$ is differentiable. Then
+        \begin{enumerate}
+            \item $f'$ is increasing on $I$ $\iff$ $f$ is convex on $I.$
+            \item $f'$ is decreasing on $I$ $\iff$ $f$ is concave on $I.$
+            \item $f'$ is strictly increasing on $I$ $\iff$ $f$ is strictly convex on $I.$
+            \item $f'$ is strictly decreasing on $I$ $\iff$ $f$ is strictly concave on $I.$
+        \end{enumerate}
+    \end{prop}
+    \begin{cor}
+        Suppose $f: I \to \mathbb{R}$ is {\color{red}twice} differentiable. Then
+        \begin{enumerate}
+            \item $f''\ge 0$ on $I$ $\iff$ $f$ is convex on $I.$
+            \item $f''\le 0$ on $I$ $\iff$ $f$ is concave on $I.$
+            \item $f''> 0$ on $I$ $\implies$ $f$ is strictly convex on $I.$
+            \item $f''< 0$ on $I$ $\implies$ $f$ is strictly concave on $I.$
+        \end{enumerate}
+    \end{cor}
+\end{frame}
+\begin{frame}{Week 3}
+    Let's now talk about inflection points.
+    \begin{defn}[Inflection point]
+        \uncover<2->{Let $x_0$ be an \emph{interior point} of $I.$ }\uncover<3->{Then, $x_0$ is called an inflection for $f$ }\uncover<4->{if there exists $\delta > 0$ such that {\color{red}either} }
+        \begin{enumerate}
+            \uncover<5->{\item $f$ is convex on $(x_0 - \delta, x_0)$ and concave on $(x_0, x_0 + \delta),$ {\color{red}or} }
+            \uncover<6->{\item $f$ is concave on $(x_0 - \delta, x_0)$ and convex on $(x_0, x_0 + \delta).$ }
+        \end{enumerate}
+    \end{defn}
+    \uncover<7->{As a crazy example, note that $0$ is an inflection point of: }\\
+    \uncover<8->{$f:\mathbb{R} \to \mathbb{R}$ defined as }\uncover<9->{
+    \begin{equation*} 
+        f(x) \vcentcolon= \begin{cases}
+            \dfrac{1}{x} & x \neq 0,\\
+            0 & x = 0.
+        \end{cases}
+    \end{equation*} }
+    \uncover<10->{Note that $f$ is not even continuous at $0.$ }\uncover<11->{Let alone twice differentiable. }\uncover<12->{Also note that every point is a point of inflection for an affine function $x \mapsto ax + b.$ }\uncover<13->{(Even if $a = 0.$) }
+\end{frame} 
+\begin{frame}{Week 3}
+    Here's some more information being thrown at you. \uncover<2->{Look at it some day. }\uncover<3->{Let $x_0 \in I$ be an \emph{interior point}, and $f: I \to \mathbb{R}.$ }
+    \uncover<4->{
+    \begin{thm}[Derivative tests]
+        \begin{enumerate}
+            \item {\color{red}(First derivative test)} Suppose $f$ is differentiable on $(x_0 - r, x_0) \cup (x_0, x_0 + r)$ for some $r > 0.$ Then, $x_0$ is a point of inflection $\iff$ there is $\delta > 0$ with $\delta < r$ such that $f'$ is increasing on $(x_0 - \delta, x_0)$ and $f'$ is decreasing on $(x_0, x_0 + \delta),$ or vice-versa.
+            \item {\color{red}(Second derivative test)} Suppose $f$ is twice differentiable on $(x_0 - r, x_0) \cup (x_0, x_0 + r)$ for some $r > 0.$ Then, $x_0$ is a point of inflection $\iff$ there is $\delta > 0$ with $\delta < r$ such that $f'' \ge 0$ on $(x_0 - \delta, x_0)$ and $f'' \le 0$ on $(x_0, x_0 + \delta),$ or vice-versa.
+        \end{enumerate}
+    \end{thm}
+    Thus, if $f$ is twice differentiable, then $x_0$ is inflection point iff $f''$ changes sign. (Note that $f''(x_0)$ is not required to exist. Recall the crazy example.)
+     }
+\end{frame}
+\begin{frame}{Week 3}
+    The previous slide gives us a \textbf{necessary} condition for inflection point. We have the same notation as earlier.
+
+    \begin{thm}[Another second derivative test]
+        \uncover<2->{Suppose $f$ is twice differentiable at $x_0.$ }\uncover<3->{If $x_0$ is a point of inflection for $f,$ }\uncover<4->{then $f''(x_0) = 0.$ }
+    \end{thm}
+
+    \uncover<5->{In the above, we are not assuming the existence of $f''$ at other points. }\uncover<6->{The following is now a \textbf{sufficient} condition. }
+    \uncover<7->{\begin{thm}[A \textbf{third} derivative test]
+        \uncover<8->{Suppose $f$ is {\color{red}thrice} differentiable at $x_0$ }\uncover<9->{such that $f''(x_0) = 0$ }\uncover<10->{and $f'''(x_0) \neq 0.$ }\uncover<11->{Then, $x_0$ is an inflection point for $f.$ }
+    \end{thm} }
+\end{frame}
+\begin{frame}{Week 3}
+    Okay, that's enough about convex/concave/inflection points. \uncover<2->{Hopefully, any possible doubt about these is covered in the previous slides. }\uncover<3->{Read them some day and ask doubts, if any. }
+
+    \uncover<4->{Once again, keep in mind the crazy example. }\uncover<5->{The definitions of these concepts do not require any continuity or anything at the point. }\uncover<6->{However, we do have the theorem that a convex function on an open interval is continuous. }\uncover<7->{Proof:\\
+    \url{https://unapologetic.wordpress.com/2008/04/15/convex-functions-are-continuous/} }
+
+    \uncover<8->{We also have the theorem that a convex function is differentiable at all but at most countably many points. }\uncover<9->{Proof:\\
+    \url{https://math.stackexchange.com/questions/946311} }
+\end{frame}
+\begin{frame}{Week 3}
+    Let's now look at Taylor polynomials. \uncover<2->{From now, $I$ will be an {\color{red}open} interval, $a$ an interior point of $I,$ and $f:I \to \mathbb{R}$ a function. }
+    \begin{defn}[Taylor polynomials]
+        \uncover<3->{Let $f$ be $n$ times differentiable }\uncover<4->{{\color{red}at $x_0$.} }\uncover<5->{We define the $n + 1$ Taylor polynomials as }\uncover<6->{
+        \begin{align*} 
+            P_0(x) =& f(x_0)\\
+            \uncover<7->{P_1(x) =& f(x_0) + \dfrac{f^{(1)}(x_0)}{1!}(x - x_0)\\ }
+           \uncover<8->{ P_2(x) =& f(x_0) + \dfrac{f^{(1)}(x_0)}{1!}(x - x_0) + \dfrac{f^{(2)}(x_0)}{2!}(x - x_0)^2\\ }
+            \uncover<9->{\vdots&\\
+            P_n(x) =& f(x_0) + \dfrac{f^{(1)}(x_0)}{1!}(x - x_0) + \cdots + \dfrac{f^{(n)}(x_0)}{n!}(x - x_0)^n }
+         \end{align*} }
+    \end{defn}
+\end{frame}
+\begin{frame}{Week 3}
+    Note that all the Taylor \textbf{polynomials} have only \textbf{finite}ly many terms, as a polynomial should have. \uncover<2->{Also note that so far, we have just defined some polynomials. }\uncover<3->{We are yet to see how it actually connects with the function itself. }\uncover<4->{This is given by the following theorem. }
+    \begin{thm}[Taylor's theorem]
+        \uncover<5->{Suppose that $f$ is {\color{red}$n + 1$} times differentiable }\uncover<6->{{\color{red}on $I$}. }\uncover<7->{Suppose that $b \in I.$ }\uncover<8->{Then, there exists $c \in (a, b) \cup (b, a)$ such that }\uncover<9->{
+        \begin{equation*} 
+            f(b) = P_n(b) + \dfrac{f^{(n + 1)}(c)}{(n + 1)!}(b - a)^{n + 1},
+        \end{equation*}where $P_n$ is as in the previous slide. }
+    \end{thm}
+\end{frame}
+\begin{frame}{Week 3}
+    Given a function $f$ (which is $n + 1$ times differentiable) and a Taylor polynomial $P_n,$ \uncover<2->{we can define the $n^{\text{th}}$ remainder as }
+    \uncover<3->{
+    \begin{align*} 
+        R_n(x) \vcentcolon= f(x) - P_n(x), && \text{for } x \in I.
+    \end{align*}
+    }
+    \uncover<4->{By the previous theorem, we know that
+    \begin{equation*} 
+        R_n(x) = \dfrac{f^{(n + 1)}(c_x)}{(n + 1)!}(x - a)^{n + 1},
+    \end{equation*}  }\uncover<5->{for some $c_x$ between $x$ and $a.$ }
+
+    \uncover<6->{Sometimes, assuming $f \in \mathcal{C}^{\infty}(I),$ we can bound $f^{(n + 1)}(c_x)$ in a nice enough way to get that }\uncover<7->{
+    \begin{equation*} 
+        R_n(x) \to 0
+    \end{equation*} }\uncover<8->{for \emph{some} $x \in I.$ }
+\end{frame}
+\begin{frame}{Week 3}
+    If the previous thing happens, \uncover<2->{then we get that
+    \begin{equation*} 
+        f(x) = \lim_{n\to \infty}P_n(x)
+    \end{equation*} }\uncover<3->{for all such $x.$ }
+
+    \uncover<4->{Thus, we get
+    \begin{equation*} 
+        f(x) = \sum_{n = 0}^{\infty}\dfrac{f^{(n)}(a)}{n!}(x - a)^n
+    \end{equation*} }\uncover<5->{for all those $x.$ }\uncover<6->{For some nice functions, we get an $R > 0$ }\uncover<7->{such that the above happens for all $x \in (a - R, a + R).$ }\uncover<8->{If such an $R$ exists for all $a \in I,$ }\uncover<9->{then $f$ is said to be \emph{analytic}. }\uncover<10->{(The $R$ may depend on $a.$) }
+
+    \uncover<11->{Note that the Taylor {\color{red}series} }\uncover<12->{about some point $a$ may still converge but \emph{not} to $f.$ }\uncover<13->{Such a function is not called analytic. }
+\end{frame}
+\begin{frame}{Week 3}
+    Some final remarks:
+
+    \uncover<2->{The last thing written $\displaystyle\sum_{n = 0}^{\infty}\dfrac{f^{(n)}(a)}{n!}(x - a)^n$ is not a Taylor \textbf{polynomial}. }\\
+    \uncover<3->{It is the Taylor \textbf{series}. }
+
+    \uncover<4->{It may happen to not converge for \emph{any} $x \neq a.$ }\uncover<5->{It may also happen to converge for all $x \in \mathbb{R}.$ }
+
+    \uncover<6->{Suppose that the series converges on some interval $J$ such that $a \in J \subset I.$ }\uncover<7->{It is not necessary that the Taylor series converges to $f$ on $J.$ }
+
+    \uncover<8->{What was the example seen in class that illustrated this? }
+\end{frame}
+\begin{frame}{Week 3}
+    \begin{tcolorbox}
+        Doubts.
+    \end{tcolorbox}
+\end{frame}
+% \begin{frame}{Week 4}
+%     In the following, it will be tacitly assumed that $a, b \in \mathbb{R}$ with $a < b.$
+%     \begin{defn}[Partitions]
+%         \uncover<2->{Given a closed interval $[a, b],$ }\uncover<3->{a \emph{partition} $P$ of $[a, b]$ }\uncover<4->{is a \underline{finite} collection of points
+%         \begin{equation*} 
+%             P = \{a = x_0 < x_1 < \cdots < x_n = b\}.
+%         \end{equation*} }
+%     \end{defn}
+%     \uncover<5->{Note that a partition $P$ is really just a subset of $[a, b]$ }\uncover<6->{with the requirement that it must be finite and contain $a$ and $b.$ }\uncover<7->{It is customary to then list it in increasing order. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}[Refinements]
+%         \uncover<2->{Given two partitions $P$ and $P'$ of $[a, b],$ }\uncover<3->{we say that $P'$ is a \emph{refinement} of $P$ }\uncover<4->{if $P \subset P'.$ }
+%     \end{defn}
+%     \uncover<5->{The ``$\subset$'' makes sense because of our earlier remark about partitions just being subsets of $[a, b].$ }\uncover<6->{In other words, it means that every point of $P$ is also a point in $P'.$ }\uncover<7->{Thus, we have ``refined'' the partition by further ``chopping'' it up. }
+
+%     \uncover<8->{Given two partitions $P_1$ and $P_2$ of $[a, b],$ }\uncover<9->{we see that $P = P_1 \cup P_2$ is also a partition of $[a, b].$ }\uncover<10->{Moreover, $P$ is a refinement of both $P_1$ and $P_2.$ }\uncover<11->{In other words, any two partitions have a \underline{common refinement}. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}
+%     \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be a {\color{red}bounded} function }\uncover<3->{and
+%     \begin{equation*} 
+%         P = \{a = x_0 < x_1 < \cdots < x_n = b\}
+%     \end{equation*} a partition of $[a, b].$ }
+
+%     \uncover<4->{We define the following quantities: }\uncover<5->{
+%     \begin{equation*} 
+%         M_i \vcentcolon= \sup_{x \in [x_{i-1}, x_i]}f(x) \quad\text{and}\quad m_i \vcentcolon= \inf_{x \in [x_{i-1}, x_i]}f(x),
+%     \end{equation*} 
+%     for $i = 1, \ldots, n.$}
+%     \end{defn}
+%     \uncover<6->{Thus, $m_i$ and $M_i$ denote the infimum and supremum of $f$ over the $i$-th interval, respectively. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     Given everything as in the previous slide, we define lower/upper sums as following.
+%     \begin{defn}[Lower/Upper sum]
+%         \uncover<2->{The \emph{lower sum} of $f$ with respect to the partition $P$ is defined as }\uncover<3->{
+%         \begin{equation*} 
+%             L(f, P) \vcentcolon= \sum_{i = 1}^{n}m_i(x_i - x_{i - 1}).
+%         \end{equation*} }
+%         \uncover<4->{The \emph{upper sum} of $f$ with respect to the partition $P$ is defined as }\uncover<5->{
+%         \begin{equation*} 
+%             U(f, P) \vcentcolon= \sum_{i = 1}^{n}M_i(x_i - x_{i - 1}).
+%         \end{equation*} }
+%     \end{defn}
+%     \uncover<6->{In the above, note that we have both $f$ and $P$ in the notation. }\uncover<7->{This is crucial because the sums depend on the partition. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     Using the earlier sums, we now define the upper and lower Darboux \emph{integrals.} The notations are continuing from earlier.
+%     \begin{defn}[Lower/Upper Darboux integrals]
+%         \uncover<2->{The \emph{lower Darboux integral of $f$} }\uncover<3->{is defined as
+%         \begin{equation*} 
+%             L(f) \vcentcolon= \sup\{L(f, P) \mid P \text{ is a partition of }[a, b]\}, 
+%         \end{equation*} }
+%         \uncover<4->{and the \emph{upper Darboux integral of $f$} }\uncover<5->{is defined as
+%         \begin{equation*} 
+%             U(f) \vcentcolon= \inf\{U(f, P) \mid P \text{ is a partition of }[a, b]\}.
+%         \end{equation*} }
+%         \uncover<6->{Note that the $\sup/\inf$ is over {\color{red}all} the partitions $P$ of $[a, b].$ }
+%     \end{defn}
+%     \uncover<7->{Note that the notation now does not have any $P.$ }\uncover<8->{This is because $L(f)$ and $U(f)$ don't depend on any specific partition. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}[Darboux integrable]
+%         \uncover<2->{A \underline{bounded} function $f:[a, b] \to \mathbb{R}$ }\uncover<3->{is said to be \emph{Darboux integrable} }\uncover<4->{if $L(f) = U(f).$ }
+
+%         \uncover<5->{In this case, we define
+%         \begin{equation*} 
+%             \int_{a}^{b} f(t) {\mathrm{d}}t \vcentcolon= U(f) = L(f).
+%         \end{equation*} }\uncover<6->{This value is called the Darboux integral. }
+%     \end{defn}
+%     \uncover<7->{\begin{thm}[Criteria for Darboux integrable]
+%         \uncover<8->{A bounded function $f:[a, b] \to \mathbb{R}$ }\uncover<9->{is Darboux integrable if and only if }\uncover<10->{for every $\epsilon > 0,$ }\uncover<11->{there exists a partition $P$ of $[a, b]$ }\uncover<12->{such that
+%         \begin{equation*} 
+%             U(f, P) - L(f, P) < \epsilon.
+%         \end{equation*} }
+%     \end{thm} }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     A corollary of the previous is the following.
+%     \begin{cor}
+%         \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be a bounded function. }\uncover<3->{Suppose that $(P_n)$ is a sequence of partitions of $[a, b]$ }\uncover<4->{such that
+%         \begin{equation*} 
+%             \lim_{n\to \infty}\left[U(f, P_n) - L(f, P_n)\right] = 0.
+%         \end{equation*} }\uncover<5->{Then, $f$ is Darboux integrable. }
+%     \end{cor}
+%     \uncover<6->{We now turn to the definition of Riemann integrals. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     Some jargon.
+%     \begin{defn}[Norm of a partition]
+%         \uncover<2->{Let $P = \{a = x_0 < \cdots < x_n = b\}$ be a partition of $[a, b].$ }\uncover<3->{The \emph{norm} of $P$ is defined to be }\uncover<4->{
+%         \begin{equation*} 
+%             \|P\| \vcentcolon= \max_{1 \le i \le n}[x_i - x_{i - 1}].    
+%         \end{equation*} }\uncover<5->{In other words, it is the length of the largest sub-interval. }
+%     \end{defn}
+%     \begin{defn}[Tagged partition]
+%         \uncover<6->{Given a partition $P$ of $[a, b]$ as before, }\uncover<7->{we get the intervals $I_i = [x_{i - 1}, x_i]$ }\uncover<8->{for $i = 1, \ldots, n.$ }\uncover<8->{For each $i,$ we pick a point $t_i \in I_i.$ }\uncover<9->{This collection of points together is denoted by $t.$ }\uncover<10->{The pair $(P, t)$ is called a \emph{tagged partition} of $[a, b].$ }
+%     \end{defn}
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}[Riemann sum]
+%         \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be a function. }\uncover<3->{Let $(P, t)$ be a tagged partition of $[a, b].$ }\uncover<4->{We define the \emph{Riemann sum} associated to $f$ and $(P, t)$ by }\uncover<5->{
+%         \begin{equation*} 
+%             R(f, P, t) \vcentcolon= \sum_{i = 1}^{n}f(t_i)(x_i - x_{i-1}).
+%         \end{equation*} }
+%     \end{defn}
+%     \uncover<6->{Note that the notation here includes $f,$ $P,$ \emph{and} $t.$ }\uncover<7->{Also note that here we didn't demand $f$ be bounded. }
+
+%     \uncover<7->{On the next slide, we state two equivalent definitions of Riemann integrability. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}[Riemann 1]
+%         \uncover<2->{A function $f:[a, b] \to \mathbb{R}$ }\uncover<3->{is said to be \emph{Riemann integrable} }\uncover<4->{if for there exists $R \in \mathbb{R}$ }\uncover<5->{such that for every $\epsilon > 0,$ }\uncover<6->{there exists {\color{red}$\delta > 0$} such that }\uncover<7->{
+%         \begin{equation*} 
+%             |R(f, P, t) - R| < \epsilon
+%         \end{equation*} }\uncover<8->{for {\color{red}all} tagged partitions $(P, t)$ }\uncover<9->{such that {\color{red}$\|P\| < \delta.$} }
+%     \end{defn}
+%     \begin{defn}[Riemann 2]
+%         \uncover<10->{A function $f:[a, b] \to \mathbb{R}$ }\uncover<11->{is said to be \emph{Riemann integrable} }\uncover<12->{if for there exists $R \in \mathbb{R}$ }\uncover<13->{such that for every $\epsilon > 0,$ }\uncover<14->{there exists {\color{red}$\delta > 0$ and a partition $P$} such that }\uncover<15->{
+%         \begin{equation*} 
+%             |R(f, P', t') - R| < \epsilon
+%         \end{equation*} }\uncover<16->{for {\color{red}all tagged refinements} $(P', t')$ of $P$ }\uncover<17->{with {\color{red}$\|P'\| < \delta.$} }
+%     \end{defn}
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{defn}
+%         \uncover<2->{In both the definitions on the earlier slide, the $R$ is unique and it is called the \emph{Riemann integral} of $f$ over $[a, b].$ }
+%     \end{defn}
+%     \begin{thm}[Darboux and Riemann are friends]
+%         \uncover<3->{Let $f:[a, b] \to \mathbb{R}$ be a function. }
+
+%         \uncover<4->{If $f$ is bounded and Darboux integrable, then $f$ is also Riemann integrable. }
+
+%         \uncover<5->{If $f$ is Riemann integrable, then $f$ is bounded and also Darboux integrable. }
+
+%         \uncover<6->{In both the cases above, the Darboux and Riemann integrals are the same. }
+%     \end{thm}
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{thm}[Riemann sums approximating the integral]
+%         \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be {\color{red}Riemann integrable}. }\uncover<2->{Suppose that $(P_n, t_n)$ is a sequence of tagged partitions of $[a, b]$ such that $\|P_n\| \to 0.$ }\uncover<3->{Then, }\uncover<4->{ 
+%         \begin{equation*} 
+%             \lim_{n\to \infty}R(f, P_n, t_n) = \int_{a}^{b} f(x) {\mathrm{d}}x.
+%         \end{equation*}}
+%     \end{thm}
+%     \uncover<5->{Note that we assumed $f$ to be Riemann integrable to begin with. }\uncover<6->{Thus, we cannot use the above theorem if we don't already know that $f$ is Riemann integrable. }\uncover<7->{The next theorem helps us in determining when that happens. }
+%     \uncover<8->{\begin{thm}
+%         Let $f:[a, b] \to \mathbb{R}$ be continuous. \uncover<9->{Then, $f$ is Riemann integrable. }
+%     \end{thm} }
+% \end{frame} 
+% \begin{frame}{Week 4}
+%     The converse of the previous theorem is not true. \uncover<2->{In fact, the theorem is true even if we assume something less. }\uncover<3->{Namely, if $f$ is bounded and is discontinuous on a finite set, then it is Riemann integrable. }\uncover<4->{The ``finite'' can even be replaced with ``at most countable,'' if you know what that means. }
+
+%     \uncover<5->{{\color{gray}The ``at most countable'' can actually be replaced with ``measure zero.''} }\uncover<6->{{\color{gray}At this point, the converse also becomes true!} }
+
+%     \uncover<7->{Now, we see how derivatives and integrals relate. These are the two parts of the Fundamental Theorem of Calculus. }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{thm}[FTC Part I]
+%         \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be a Riemann integrable function, }\uncover<3->{and let
+%         \begin{equation*} 
+%             F(x) \vcentcolon= \int_{a}^{x} f(t) {\mathrm{d}}t
+%         \end{equation*} }\uncover<4->{for $x \in [a, b].$ }
+
+%         \uncover<5->{Then, $F$ is continuous. }\uncover<6->{Moreover, if $f$ is continuous at some $c \in (a, b),$ }\uncover<7->{then $F$ is differentiable at $c$ and }\uncover<8->{
+%         \begin{equation*} 
+%             F'(c) = f(c).
+%         \end{equation*} }
+%         \uncover<9->{In particular, if $f$ is continuous, }\uncover<10->{then Riemann integrability of $f$ is guaranteed }\uncover<11->{and the above equation is true for \emph{all} $c \in (a, b).$ }
+%     \end{thm}
+% \end{frame}
+% \begin{frame}{Week 4}
+%     \begin{thm}[FTC Part II]
+%         \uncover<2->{Let $f:[a, b] \to \mathbb{R}$ be given }\uncover<3->{and suppose there exists a continuous function $F:[a, b] \to \mathbb{R}$ }\uncover<4->{which is differentiable on $(a, b)$ }\uncover<5->{and satisfies $F' = f$ on $(a, b).$ }\uncover<6->{{\color{red}If} $f$ is Riemann integrable on $[a, b],$ }\uncover<7->{then
+%         \begin{equation*} 
+%             \int_{a}^{b} f(t) {\mathrm{d}}t = F(b) - F(a).
+%         \end{equation*} }
+%     \end{thm}
+%     \uncover<8->{Note that the {\color{red}if} is crucial. }\uncover<9->{It isn't necessary that the derivative of a function is Riemann integrable. }\uncover<10->{It needn't even be bounded. }\uncover<11->{(But even if it is bounded, it needn't be Riemann integrable. Although an example of this is harder.) }
+% \end{frame}
+% \begin{frame}{Week 4}
+%     Some pathological remarks: 
+%     \begin{enumerate}
+%         \item If a function is Riemann integrable, it doesn't mean that it is the derivative of a function. (That is, it needn't have an anti-derivative.)
+%         \item If a function has an anti-derivative, it doesn't mean that it is Riemann integrable. (That is, derivatives needn't be Riemann integrable.)
+%     \end{enumerate}
+%     For the first, take $f:[0, 2] \to \mathbb{R}$ defined by $f(x) = \lfloor x \rfloor.$ It cannot be the derivative of any function because it doesn't have IVP. (Recall Theorem \ref{thm:darboux}.)
+
+%     For the second, consider the derivative of $F:[-1, 1] \to \mathbb{R}$ defined by $F(x) = x^2\sin(1/x^2)$ for $x \neq 0$ and $F(0) = 0.$ $F'$ here isn't bounded.
+% \end{frame}
+% \begin{frame}{Week 5}
+%     \begin{tcolorbox}
+%         Start recording!
+%     \end{tcolorbox}
+% \end{frame}
+% \begin{frame}{Week 5}
+%     \uncover<2->{In whatever follows, $n, m \ge 1$ and $U$ will be a subset of $\mathbb{R}^n.$}
+%     \begin{defn}[Limits]
+%         \uncover<3->{Let $f:U \to \mathbb{R}^m$ be a function }\uncover<4->{and $c \in \mathbb{R}^n$ be a \underline{limit point} of $U.$ } \uncover<5->{Let $L {\color{red}\;\in \mathbb{R}^m}.$ }\uncover<6->{We write
+%         \begin{equation*} 
+%             \lim_{x\to c}f(x) = L
+%         \end{equation*} }\uncover<7->{if for every $\epsilon > 0,$ }\uncover<8->{there exists $\delta > 0$ }\uncover<11->{such that }\uncover<9->{
+%         \begin{equation*} 
+%             \|f(x) - L\| < \epsilon
+%         \end{equation*} }\uncover<10->{for all ${\color{red}x \in U}$ }\uncover<11->{such that ${\color{red}0 <\;}\|x - c\| < \delta.$ }
+%     \end{defn}
+%     \uncover<12->{Note that if $m = 1,$ then $\|f(x) - L\|$ is just $|f(x) - L|.$ }\uncover<13->{In fact, for $n = m = 1,$ the definition above coincides with the earlier one. (Definition \ref{defn:limit}.)}
+% \end{frame}
+% \begin{frame}{Week 5}
+%     In the previous slide, we used the phrase ``limit point.'' \uncover<2->{The following is the definition. }\uncover<3->{\begin{defn}[Limit point]
+%         Let $U \subset \mathbb{R}^n$ \uncover<4->{and $c \in \mathbb{R}^n.$ }\uncover<5->{$c$ is said to be a \emph{limit point} of $U$ }\uncover<6->{if for every $\delta > 0,$ }\uncover<7->{there exists $x \in U$ such that }\uncover<8->{${\color{red}0 < \;} \|x - c\| < \delta.$ }
+%     \end{defn} }
+%     \uncover<9->{Note that a limit point of $U$ can lie outside $U.$ }\uncover<10->{Conversely, a point in $U$ could still fail to be a limit point of $U.$ }
+
+%     \uncover<11->{To see this, consider $n = 1$ and $U = [0, 1) \cup \{2\}.$ }\uncover<12->{Then, $1$ is a limit point of $U$ while $2$ is not. }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     As before, we can now define continuity easily.
+%     \begin{defn}[Continuity]
+%         \uncover<2->{If $f: U \to \mathbb{R}^m$ is a function }\uncover<3->{and $c \in U,$ }\uncover<4->{then $f$ is said to be }\uncover<5->{\emph{continuous at the point $c$} }\uncover<6->{if (and only if)
+%         \begin{equation*} 
+%             \lim_{x\to c}f(x) = f(c).
+%         \end{equation*} } 
+%     \end{defn}
+%     \uncover<7->{As before, the case $n = m = 1$ recovers the original one. }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     Now, let us assume $n = 2$ and $m = 1.$ \uncover<2->{That is, $U \subset \mathbb{R}^2$ and we look at functions of the form $f : U \to \mathbb{R}.$ }
+%     \begin{defn}[Partial derivative]
+%         \uncover<3->{Let $f : U \to \mathbb{R}$ be a function }\uncover<4->{and $(a, b) \in U$ an \underline{interior point} of $U.$ }\uncover<5->{The \emph{partial derivative of $f$ at $(a, b)$ with respect to $x_1$} is defined by }\uncover<6->{
+%         \begin{equation*} 
+%             \dfrac{\partial f}{\partial x_1}(a, b) \vcentcolon= \lim_{x_1\to a}\dfrac{f(x_1, b) - f(a, b)}{x_1 - a},
+%         \end{equation*} }\uncover<7->{provided that the limit exists. }
+%     \end{defn}
+%     \uncover<8->{The partial derivative with respect to $x_2$ is defined similarly. }\\
+%     \uncover<9->{Note that the limit above is an ordinary one-variable limit of a real function, as we had seen earlier. }\uncover<10->{Also note that $b$ is fixed in the numerator. }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     In the previous slide, we used the phrase ``interior point.'' \uncover<2->{The following is the definition. }\uncover<3->{\begin{defn}[Interior point]
+%         Let $U \subset \mathbb{R}^n$ \uncover<4->{and $c \in U.$ }\uncover<5->{$c$ is said to be an \emph{interior point} of $U$ }\uncover<6->{if there exists $\delta > 0$ }\uncover<7->{such that for every $x \in \mathbb{R}^n$ with $\|x - c\| < \delta,$ }\uncover<8->{we have $x \in U.$ }
+%     \end{defn} }
+%     \uncover<9->{The above says that not only is $c \in U$ but also that there is a ``ball'' around $c$ contained in $U.$ }
+
+%     \uncover<10->{Note that the above says ``there exists'' and not ``for every.'' }\uncover<11->{Compare this with the definition of ``limit point.'' }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     \begin{defn}[Directional derivatives]
+%         \uncover<2->{Let $f : U \to \mathbb{R}$ be a function }\uncover<3->{and $v = (v_1, v_2) \in \mathbb{R}^2$ a {\color{red}unit vector}. }\uncover<4->{Let $x = (x_1, x_2) \in U$ be an interior point of $U.$ }\uncover<5->{The \emph{directional derivative of $f$ in the direction $v$ at $x$} is defined as }\uncover<6->{
+%         \begin{equation*} 
+%             \nabla_vf(x) = \lim_{t\to 0}\dfrac{f(x_1 + tv_1, x_2 + tv_2) - f(x_1, x_2)}{t},
+%         \end{equation*} provided it exists.}
+%     \end{defn}
+%     \uncover<7->{As before, this is an ordinary limit. }\uncover<8->{Taking $v = (1, 0)$ and $(0, 1)$ recovers the usual the partial derivatives with respect to $x_1$ and $x_2,$ respectively. }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     \begin{defn}[Differentiability]
+%         \uncover<2->{Let $f : U \to \mathbb{R}$ be a function and $(x_0, y_0)$ be an interior point of $U.$ }\uncover<3->{$f$ is said to be \emph{differentiable at $(x_0, y_0)$} }\uncover<4->{if there exists a $1 \times 2$ matrix $A$ }\uncover<5->{such that
+%         \begin{equation*} 
+%             \lim_{(h, k)\to (0, 0)}\dfrac{\left|f(x_0 + h, y_0 + k) - f(x_0, y_0) - A\begin{bmatrix}
+%                 h\\
+%                 k
+%             \end{bmatrix}\right|}{\|(h, k)\|} = 0.
+%         \end{equation*} }\uncover<6->{In this case, we write $Df(x_0, y_0) = A$ }\uncover<7->{and call $A$ the \emph{total derivative} of $f$ at $(x_0, y_0).$ }
+%     \end{defn}
+% \end{frame}
+% \begin{frame}{Week 5}
+%     In your slides, we had seen originally seen a different definition. \uncover<2->{That happens to be equivalent to the above. }\uncover<3->{We have the following theorem. }\uncover<4->{We keep the same notations as earlier. }
+%     \begin{thm}
+%         \uncover<5->{Suppose that $f$ is differentiable is $(x_0, y_0).$ }\uncover<6->{Then, both the partial derivatives of $f$ at $(x_0, y_0)$ exist }\uncover<7->{and
+%         \begin{equation*} 
+%             Df(x_0, y_0) = \begin{bmatrix}
+%                 \dfrac{\partial f}{\partial x_1}(x_0, y_0) &
+%                 \dfrac{\partial f}{\partial x_2}(x_0, y_0)
+%             \end{bmatrix}.
+%         \end{equation*} }
+%     \end{thm}
+%     \uncover<8->{The above matrix is also called the \emph{gradient} and denoted by $\nabla f(x_0, y_0).$ }
+% \end{frame}
+% \begin{frame}{Week 5}
+%     \begin{tcolorbox}
+%         Stop recording. Start a new one.
+
+%         Take doubts.
+%     \end{tcolorbox}
+% \end{frame}
+
+% \begin{frame}{Week 6}
+%     \begin{tcolorbox}
+%         Start recording!
+%     \end{tcolorbox}
+% \end{frame}
+% \begin{frame}{Week 6}
+%     Note that in my slides, I had actually defined the limit and continuity of {\color{blue}vector valued} functions of the form $f:\mathbb{R}^m \to \mathbb{R}^n$ last week itself. \uncover<2->{(In fact, the domain only need be a subset $U \subset \mathbb{R}^m$ and not the whole space itself.) }
+
+%     \uncover<3->{Observe that given a function $f:U \to \mathbb{R}^n,$ }\uncover<4->{we actually get $n$ different functions $f_i:U \to \mathbb{R}$ for $i = 1, \ldots, n,$ }\uncover<5->{obtained by looking at each coordinate. }
+
+%     \uncover<6->{One can show that a function of the form $f: U \to \mathbb{R}^n$ is continuous if and only if }\uncover<7->{each $f_i : U \to \mathbb{R}$ is continuous. }
+
+%     \uncover<8->{If $n = m,$ these vector valued functions are called {\color{blue}vector fields}. }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     We now look at the derivative of a vector valued function. As earlier, ${\color{red}U} \subset \mathbb{R}^{\color{red}m}.$
+%     \begin{defn}[Differentiability]
+%         \uncover<2->{Let $f : {\color{red}U} \to \mathbb{R}^{{\color{blue}n}}$ be a function and $x$ be an interior point of $U.$ }\uncover<3->{$f$ is said to be \emph{differentiable at $x$} }\uncover<4->{if there exists an ${\color{blue}n} \times {\color{red}m}$ matrix $A$ }\uncover<5->{such that
+%         \begin{equation*} 
+%             \lim_{{\color{red}h}\to 0}\dfrac{\left\|f(x + h) - f(x) - Ah\right\|}{\|h\|} = 0.
+%         \end{equation*} }\uncover<6->{In this case, we write $Df(x) = A$ }\uncover<7->{and call $A$ the \emph{total derivative} of $f$ at $x.$ }
+%     \end{defn}
+%     \uncover<8->{Note in the above that $h$ is a column matrix in the red space - $\mathbb{R}^{{\color{red}m}},$ that is, the domain space. }\uncover<9->{In the limit, note that the value in the numerator (inside the mod) is in $\mathbb{R}^{{\color{blue}n}}$ and denominator in $\mathbb{R}^{{\color{red}m}}.$ }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     Just like in the case of $\mathbb{R}^2 \to \mathbb{R},$ the general appearance of the derivative, if it exists, is quite simple:
+
+%     \uncover<2->{Recall that given a map $f : U \to \mathbb{R}^n,$ we get $n$ functions $f_1, \ldots, f_n : U \to \mathbb{R}.$ }\uncover<3->{All of these are \underline{real valued} functions of $m$ variables. }\uncover<4->{Thus, it makes sense to talk about the $m$ partial derivatives. }\uncover<5->{In terms of this we get that
+%     \begin{equation*} 
+%         Df(x) = \begin{bmatrix}
+%             \frac{\partial f_1}{\partial x_1}(x) & {\color{red}\cdots} & \frac{\partial f_1}{\partial x_{\color{red}m}}(x)\\
+%             {\color{blue}\vdots} & {\color{purple}\ddots} & {\color{blue}\vdots} \\
+%             \frac{\partial f_{{\color{blue}n}}}{\partial x_1}(x) & {\color{red}\cdots} & \frac{\partial f_{{\color{blue}n}}}{\partial x_{\color{red}m}}(x)\\
+%         \end{bmatrix}
+%     \end{equation*} }
+%     \uncover<6->{\begin{tcolorbox}[colback = red!30]\bfseries
+%     Note that partial derivatives (as seen so far) only make sense for \underline{real valued} functions.
+%     \end{tcolorbox} }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     \begin{thm}[Chain rule]
+%         \uncover<2->{Suppose we have functions as following: }\uncover<3->{
+%         \begin{equation*} 
+%             \mathbb{R}^m \overset{f}{\longrightarrow} \mathbb{R}^n \overset{g}{\longrightarrow} \mathbb{R}^p.
+%         \end{equation*} }\uncover<4->{Assume that $f$ is differentiable at $x \in \mathbb{R}^m$ }\uncover<5->{and $g$ at $f(x).$ }\uncover<6->{Then $g \circ f:\mathbb{R}^m \to \mathbb{R}^p$ is differentiable at $x$ }\uncover<7->{and the $p \times m$ derivative matrix $D(g \circ f)(x)$ is given by }\uncover<8->{
+%         \begin{equation*} 
+%             D(g \circ f)(x) = \left[Dg(f(x))\right]\circ Df(x),
+%         \end{equation*} }\uncover<9->{where $\circ$ on the right is matrix multiplication. }
+%     \end{thm}
+%     \uncover<10->{Note that the matrix multiplication makes sense because $Dg(f(x))$ is a $p \times n$ matrix and $Df(x)$ an $n \times m$ matrix. }\uncover<11->{Moreover, the product is a $p \times m$ matrix, as expected. }
+% \end{frame} 
+% \begin{frame}{Week 6}
+%     \begin{thm}[Mixed partials theorem]
+%         \uncover<2->{Let $f : U \to \mathbb{R}$ be a \underline{real valued} function }\uncover<3->{such that the partial derivatives $\frac{\partial }{\partial x_i}\left(\frac{\partial}{\partial x_j}f\right)$ exist and are continuous }\uncover<4->{for all $1 \le i, j \le m.$ }\uncover<5->{Then
+%         \begin{equation*} 
+%             \frac{\partial }{\partial x_i}\left(\frac{\partial}{\partial x_j}f\right) = \frac{\partial }{\partial x_j}\left(\frac{\partial}{\partial x_i}f\right)
+%         \end{equation*} }\uncover<6->{for all $1 \le i, j \le m.$ }
+
+%         \uncover<7->{In other words, the order of the \emph{mixed partial} is irrelevant. }
+%     \end{thm}
+%     \uncover<8->{A function satisfying the hypothesis of the above theorem is said to be a $\mathcal{C}^2$ function. }
+
+%     \uncover<9->{A counterexample for the partials not being equal is given on the next slide. }\uncover<10->{Of course, the function is not $\mathcal{C}^2$ in that case. }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     The promised counterexample:
+
+%     \begin{ex}[Inequality of mixed partials]
+%         Let $f:\mathbb{R}^2 \to \mathbb{R}$ be defined by
+%         \begin{equation*} 
+%             f(x, y) \vcentcolon= \begin{cases}
+%                 \dfrac{xy(x^2 - y^2)}{x^2 + y^2} & (x, y) \neq (0, 0),\\
+%                 0 & (x, y) = (0, 0).
+%             \end{cases}
+%         \end{equation*}
+%         Then,
+%         \begin{equation*} 
+%             \frac{\partial }{\partial x_2}\left(\frac{\partial}{\partial x_1}f\right)(0, 0) = -1 \neq 1 = \frac{\partial }{\partial x_1}\left(\frac{\partial}{\partial x_2}f\right)(0, 0).
+%         \end{equation*}
+%     \end{ex}
+% \end{frame}
+% \begin{frame}{Week 6}
+%     \begin{defn}[Critical point]
+%         \uncover<2->{Let $U \subset \mathbb{R}^2$ }\uncover<3->{and $(x_0, y_0) \in U$ be an interior point. }\uncover<4->{$(x_0, y_0)$ is called a \emph{critical point} of $f$ }\uncover<5->{if $\nabla f(x_0, y_0) = [0 \; 0].$ }
+%     \end{defn}
+%     \begin{defn}[Local minimum]
+%         \uncover<6->{Let $U \subset \mathbb{R}^2$ }\uncover<7->{and $(x_0, y_0) \in U$ be an interior point. }\uncover<8->{Then, we say that $f$ attains a \emph{local minimum} at $(x_0, y_0)$ }\uncover<9->{if there exists $r > 0$ such that the disc }\uncover<10->{
+%         \begin{equation*} 
+%             D_r(x_0, y_0) = \{(x, y) \mid \|(x, y) - (x_0, y_0)\| < r\}
+%         \end{equation*} }\uncover<11->{is contained in $U$ }\uncover<12->{and $f(x_0, y_0) \le f(x, y)$ for all $(x, y) \in D_r(x_0, y_0).$ }
+%     \end{defn}
+% \end{frame}
+% \begin{frame}{Week 6}
+%     \begin{defn}[Fermat's Theorem]
+%         \uncover<2->{If a function has a local minimum at a point, }\uncover<3->{then that point is a critical point. }
+%     \end{defn}
+%     \uncover<4->{There's a similar definition for ``local maximum'' and a similar theorem. }
+
+%     \uncover<5->{Of course, the converse is not true. }\uncover<6->{This wasn't true even in the case of one variable. }
+
+%     \uncover<7->{In fact, a critical point which is not a point of local extremum is called a {\color{blue}saddle point}. }\uncover<8->{\hfill (Definition.) }
+
+%     \uncover<9->{In the one-variable case, we did have a second derivative test which let us conclude more information. }\uncover<10->{We have a similar thing here. }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     \begin{defn}[Double derivative test]
+%         \uncover<2->{Let $f : U (\subset \mathbb{R}^2) \to \mathbb{R}$ be a $\mathcal{C}^2$ function. }\uncover<3->{Let $(x_0, y_0)$ be a critical point of $f.$ }\uncover<4->{Define
+%         \begin{equation*} 
+%             D \vcentcolon= f_{xx}(x_0, y_0)f_{yy}(x_0, y_0) - [f_{xy}(x_0, y_0)]^2.
+%         \end{equation*} 
+%         {\color{gray}The above can be seen as a certain determinant.}}
+%         \uncover<5->{\begin{enumerate}
+%             \item If $D > 0$ and $f_{xx}(x_0, y_0) > 0,$ then $(x_0, y_0)$ is a local minimum for $f.$
+%             \uncover<6->{\item If $D > 0$ and $f_{xx}(x_0, y_0) < 0,$ then $(x_0, y_0)$ is a local maximum for $f.$ }
+%             \uncover<7->{\item If $D < 0,$ then $(x_0, y_0)$ is a saddle point for $f.$ }
+%             \uncover<8->{\item If $D = 0,$ the test says nothing. }
+%         \end{enumerate} }
+%     \end{defn}
+%     \uncover<9->{Note that the above only gives information on the \emph{interior} of $U.$ }\uncover<10->{To get a global minimum on a (bounded) \emph{closed} rectangle, }\uncover<11->{we would also have to look at the \emph{boundary}. }
+% \end{frame}
+% \begin{frame}{Week 6}
+%     Some concluding facts about multi-variable functions. \uncover<2->{For simplicity, we assume that the function is of the form $f:\mathbb{R}^2 \to \mathbb{R}.$ }
+%     \uncover<3->{\begin{enumerate}
+%         \uncover<3->{\item If $f$ is differentiable at a point, then $f$ is continuous at that point and all directional derivatives at that point exist. Moreover,
+%         \begin{equation*} 
+%             D_uf(x_0, y_0) = (\nabla f(x_0, y_0))\cdot u
+%         \end{equation*}
+%         for every unit vector $u.$ }
+%         \uncover<4->{\item If $f_x$ and $f_y$ exist at a point, it does not imply that the other directional derivatives do too. }
+%         \uncover<5->{\item If all directional derivatives exist at a point, it does not imply that $f$ is continuous at that point. In particular, $f$ need not be differentiable at that point. }
+%     \end{enumerate} }
+% \end{frame} 
+% \begin{frame}{Week 6}
+%     Some things regarding the second derivative test.
+%     \begin{enumerate}
+%         \uncover<2->{\item If you get $D = 0$ in the last test, you would have to analyse the function on your own and try to find out the behaviour. }\uncover<3->{(We shall do this in a tutorial question today.) }
+%         \uncover<4->{\item Note that, by definition, if a critical point is not a local extremum, then it must be a saddle point. }\uncover<5->{In other words, a critical point is either a point of local extremum or a saddle point. }
+%     \end{enumerate}
+% \end{frame}
+% \begin{frame}{Week 6}
+%     And for the last time.
+%     \begin{tcolorbox}
+%         Stop recording. Start a new one.
+
+%         Take doubts.
+%     \end{tcolorbox}
+% \end{frame}
+\end{document}
+
+% c4yd6ei
