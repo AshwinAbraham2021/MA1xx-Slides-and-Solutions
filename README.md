@@ -5,7 +5,7 @@ This site contains the solutions of the problems in the MA 109 Tutorials for the
 - [Solutions to Tutorial 2 (Draft)](https://ashwinabraham2021.github.io/MA-109-Tutorial-Solutions/Tutorial2.pdf)
 
 TSC slides:
-- [Concept Recap](https://ashwinabraham2021.github.io/MA109_TSC.pdf)
+- [Concept Recap](https://ashwinabraham2021.github.io/MA-109-Tutorial-Solutions/MA109_TSC.pdf)
 - [Memes: credit Aryaman Maithani](https://ashwinabraham2021.github.io/MA-109-Tutorial-Solutions/Memes.pdf)
 
 PYQs solved in the TSC:
